@@ -1,0 +1,33 @@
+/* CSS File for firstPage*/
+
+
+h1, h3 {
+    text-align: center;
+}
+
+#course_selector {
+
+padding-top: 1em;
+ background: url("background-1.jpg");
+ background-size: 100% 100%;
+ width: 50%;
+ margin: auto;
+ height: 10em;  
+ margin: auto;
+ text-align: center;
+
+}
+
+#search {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+    border-radius: 5px;
+    
+}
+
+p {
+    width: 50%;
+    margin: auto;
+    text-align: right;
+}

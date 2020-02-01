@@ -1,0 +1,27 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>DSU course uploader</title>
+        <link rel="stylesheet" type="text/css"href="firstPageCSS.css">
+    </head>
+    <body>
+        <h1>Course uploader</h1>
+        
+        <h3>Select the courses you wish to upload to Gmail</h3> <!-- Can be changed to Outlook? -->
+        <div id="course_selector">
+            <form action ="/action_page.php" method="get" autocomplete ="on">
+                <span style="font-weight: bold;">Course name:</span> <input type="text" placeholder="ie: CSIS2200-070" name="courseName">
+                <input type="submit" value="Enter Course">
+                <br>
+                <br>
+                <input type="file" name="uploadField" />
+                <br>
+                <br>
+                <input type="button" id="search" value="Export to Gmail">
+            </form>
+        </div>
+        <footer>
+            <p>Produced by students at Douglas College Developer Club.</p>
+        </footer>
+    </body>
+</html>

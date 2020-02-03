@@ -9,4 +9,10 @@ Once it all looks good, we'll send it to Google/Outlook API
 This will create the appropriate events in your Calendar!
 And you're done!
 
+**Technologies**
 
+HTML
+CSS
+JavaScript
+
+Bootstrap

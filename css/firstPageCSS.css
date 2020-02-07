@@ -1,0 +1,103 @@
+/* CSS File for firstPage*/
+
+h1, h3 {
+    text-align: center;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav {
+    display: flex;
+}
+
+#mainHeading {
+    /* float: left; */
+}
+
+#DClogo {
+    /* float: left; */
+}
+
+#course_selector {
+
+    padding-top: 1em;
+    background-size: 100% 100%;
+    width: 50%;
+    margin: auto;
+    height: 10em;  
+    margin: auto;
+    text-align: center;
+
+}
+
+#search {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+    border-radius: 5px;
+    
+}
+
+p {
+    width: 50%;
+    margin: auto;
+    text-align: right;
+}
+#background {
+    border-image-repeat: stretch;
+    background-position: 50% 50%;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-size: cover;
+    width: 100%;
+    padding-top: 7.5%;
+    padding-bottom: 7.5%;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style-image: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+li {
+    font-size: 2em;
+    width: 100px;
+    padding: 10px;
+    color: rgb(136, 136, 136);
+}
+
+a:visited {
+    color: rgb(136, 136, 136);
+}
+
+#form {
+    margin: auto;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    width: 50%;
+    color: #fff;
+    font-size: 2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgba(136, 136, 136, 0.66);
+}
+
+/* #background {
+    background-image: url("../img/backgrownd_image_2.jpg");
+    box-sizing: border-box;
+    display: flex;
+    float: none;
+    position: static;
+    z-index: auto;
+
+} */

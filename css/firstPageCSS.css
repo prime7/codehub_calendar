@@ -3,6 +3,11 @@
 h1, h3 {
     text-align: center;
 }
+.carousel-item h1{
+    text-align: center;
+    color: white;
+    font-size: 50px;
+}
 
 #header {
     display: flex;
@@ -45,6 +50,11 @@ p {
     margin: auto;
     text-align: right;
 }
+.carousel-item p{
+    text-align: center;
+    color: white;
+}
+
 #background {
     border-image-repeat: stretch;
     background-position: 50% 50%;
@@ -86,8 +96,8 @@ a:visited {
     color: rgb(136, 136, 136);
 }
 
-#form {
-    margin: auto;
+.inner-carousel {
+     margin: auto;
     padding-top: 2.5%;
     padding-bottom: 2.5%;
     width: 50%;

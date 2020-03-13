@@ -9,6 +9,9 @@ Once it all looks good, we'll send it to Google/Outlook API
 This will create the appropriate events in your Calendar!
 And you're done!
 
+**Designs**
+https://ovenapp.io/view/IWBerLOlcQNbCMxUhMmuyJSDSnYgPvtB/
+
 **Technologies**
 
 HTML
@@ -16,8 +19,9 @@ CSS
 JavaScript
 
 Python
-Node.js?
+Django
 
+Tabula.py
 Bootstrap
 
 **Coding Conventions**

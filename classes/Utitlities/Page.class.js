@@ -5,7 +5,9 @@ class Page {
     };
 
     static function showCourseEditor(params) {
-        document.getElementById("myImage")
+        
+        document.getElementById("myImage");
+
     };
 
 }

@@ -48,13 +48,13 @@
             style="background-image: url('https://mycareer.douglascollege.ca/content/documents/landingPageUploads/2019-06-28/r1004207873837977889521114853377473384225105839339r/Douglas_Student_Life_6841_Print_OrbisEditr529151934743251476513800308133308387358321979332r.jpg');">
             <div id="carouselContainer">
                 <div id="carouselExampleIndicators" class="carousel slide">
-                    <ol class="carousel-indicators">
+                    <!-- <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                         <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                    </ol>
+                    </ol> -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div id="carouselContent">
@@ -76,25 +76,111 @@
                             <div id="carouselContent">
 
                                 <h1>Loading</h1><br><br>
-                                <!-- <div id="myProgress"> -->
-                                    <div id="myBar"></div>
-                                <!-- </div> -->
+
+                                <div id="myBar"></div>
+
                             </div>
                         </div>
+                        <div class="carousel-item">
+                            <div id="modal">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    Edit
+                                </button>
 
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Course</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <!-- Form appears only if the user clicks edit btn -->
+                                                <div>
+                                                    <form>
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="inputEmail4">Email</label>
+                                                                <input type="email" class="form-control"
+                                                                    id="inputEmail4">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="inputPassword4">Password</label>
+                                                                <input type="password" class="form-control"
+                                                                    id="inputPassword4">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputAddress">Address</label>
+                                                            <input type="text" class="form-control" id="inputAddress"
+                                                                placeholder="1234 Main St">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputAddress2">Address 2</label>
+                                                            <input type="text" class="form-control" id="inputAddress2"
+                                                                placeholder="Apartment, studio, or floor">
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="inputCity">City</label>
+                                                                <input type="text" class="form-control" id="inputCity">
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <label for="inputState">State</label>
+                                                                <select id="inputState" class="form-control">
+                                                                    <option selected>Choose...</option>
+                                                                    <option>...</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-2">
+                                                                <label for="inputZip">Zip</label>
+                                                                <input type="text" class="form-control" id="inputZip">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    id="gridCheck">
+                                                                <label class="form-check-label" for="gridCheck">
+                                                                    Check me out
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                                    </form>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        
                         <div class="carousel-item">
                             <div id="carouselContent">
                             </div>
                         </div>
                         <div class="carousel-item">
-                            
-                        </div>
-                        <div class="carousel-item">
                             <div class="carouselContent">
                                 <h3 class="wow fadeInLeftBig">Thanks for using our app!</h3>
                                 <!-- Cat picture -->
-                                <img src="img/developer cat 2.jpg" alt="Developer cat"
-                                    id="catImg" style="display: block; margin: 0 auto; width:50%; height: 10%">
+                                <img src="img/developer cat 2.jpg" alt="Developer cat" id="catImg"
+                                    style="display: block; margin: 0 auto; width:50%; height: 10%">
                             </div>
                         </div>
                     </div>

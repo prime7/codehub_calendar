@@ -147,19 +147,17 @@ a:visited {
     transition-timing-function: linear;
     -webkit-transition-timing-function: linear;
     bottom: 0px;
-    
+    margin-left: 10%;
 }
 
 @keyframes loader {
-    0% {width: 0%;left:10%;right:10%}
-    /* 50% { width: 50%;left:0;right:0}  */
-    100% { width: 100%;left:10%;right:10%} 
+    0% {width: 0%;left:0;right:0}
+    100% { width: 80%;left:0;right:0} 
 }
 
 @-webkit-keyframes loader {
-    0% {width: 0%;left:10%;right:10%}
-    /* 50% { width: 50%;left:0;right:0}  */
-    100% { width: 100%;left:10%;right:10%}  
+    0% {width: 0%;left:0;right:0}
+    100% { width: 80%;left:0;right:0}  
 }
 
 #carouselContainer {
@@ -180,4 +178,8 @@ a:visited {
     width:50%; 
     height: 10%;
     padding-bottom: 30px;
+}
+
+#modal {
+    color: black;
 }

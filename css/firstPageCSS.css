@@ -30,7 +30,7 @@ nav {
 #course_selector {
     padding-top: 1em;
     background-size: 100% 100%;
-    width: 100%;
+    width: 75%;
     margin: auto;
     height: 10em;
     margin: auto;
@@ -62,6 +62,7 @@ p {
     background-position-y: 50%;
     background-size: cover;
     width: 100%;
+    height: 600px;
     padding-top: 7.5%;
     padding-bottom: 7.5%;
 }
@@ -96,31 +97,11 @@ a:visited {
     color: rgb(136, 136, 136);
 }
 
-.inner-carousel {
-     margin: auto;
-    padding-top: 2.5%;
-    padding-bottom: 2.5%;
-    width: 50%;
-    color: #fff;
-    font-size: 2em;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgba(136, 136, 136, 0.66);
-}
-
-form {
+.carouselContent {
     width: 75%;
+    height: 100%;
     margin: auto;
 }
-
-/* #background {
-    background-image: url("../img/backgrownd_image_2.jpg");
-    box-sizing: border-box;
-    display: flex;
-    float: none;
-    position: static;
-    z-index: auto;
-
-} */
 
 .custom-file-upload {
     border: 2px dashed #ccc;
@@ -135,18 +116,68 @@ form {
     font-size: 10px;
 }
 
-
-
 #myProgress {
-  width: 100%;
+  width: 50%;
+  margin: auto;
   background-color: #ddd;
 }
 
-#myBar {
+/* #myBar {
   width: 10%;
   height: 30px;
   background-color: #4CAF50;
   text-align: center;
   line-height: 30px;
   color: white;
+} */
+
+#myBar::after {
+    content: "";
+    /* width: 80%; */
+    height: 30px;
+    background: green;
+    
+	position: absolute;
+    animation: loader 2s;
+    -webkit-animation: loader 2s;
+    -webkit-animation-delay: loader 2s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    transition-timing-function: linear;
+    -webkit-transition-timing-function: linear;
+    bottom: 0px;
+    
+}
+
+@keyframes loader {
+    0% {width: 0%;left:10%;right:10%}
+    /* 50% { width: 50%;left:0;right:0}  */
+    100% { width: 100%;left:10%;right:10%} 
+}
+
+@-webkit-keyframes loader {
+    0% {width: 0%;left:10%;right:10%}
+    /* 50% { width: 50%;left:0;right:0}  */
+    100% { width: 100%;left:10%;right:10%}  
+}
+
+#carouselContainer {
+    margin: auto;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    width: 50%;
+    height: 100%;
+    color: #fff;
+    font-size: 2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgba(136, 136, 136, 0.66);
+}
+
+#catImg {
+    display: block;
+    margin: 0 auto; 
+    width:50%; 
+    height: 10%;
+    padding-bottom: 30px;
 }

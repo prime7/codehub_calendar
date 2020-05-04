@@ -1,206 +1,255 @@
 <!Doctype html>
 <html>
 
-<head>
-    <title>DSU course uploader</title>
-    <link rel="stylesheet" type="text/css" href="css/firstPageCSS.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-    <script src="functions/ShowCourses.js"></script>
+    <head>
+        <title>DSU course uploader</title>
+        <link rel="stylesheet" type="text/css" href="css/firstPageCSS.css">
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous">
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+        <script src="functions/ShowCourses.js"></script>
 
-</head>
+    </head>
 
-<body>
-    <header>
-        <div id="header">
-            <div>
-                <a href="">
-                    <img id="DClogo"
-                        src="https://mycareer.douglascollege.ca/site/images/2019-06-28/r48833966953742647128013795923362156528757155775853r/DOUGLAS_LOGO_landingr064588648236895256653031303197775090406180383864r.png"
-                        alt="">
-                </a>
+    <body>
+        <header>
+            <div id="header">
+                <div>
+                    <a href="">
+                        <img
+                            id="DClogo"
+                            src="https://mycareer.douglascollege.ca/site/images/2019-06-28/r48833966953742647128013795923362156528757155775853r/DOUGLAS_LOGO_landingr064588648236895256653031303197775090406180383864r.png"
+                            alt="">
+                    </a>
+                </div>
+                <div id="mainHeading">
+                    <h1>Grape</h1>
+                </div>
+                <div id="navigation">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="">HOME</a>
+                            </li>
+                            <li>
+                                <a href="">SECOND</a>
+                            </li>
+                            <li>
+                                <a href="">THIRD</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-            <div id="mainHeading">
-                <h1>Grape</h1>
-            </div>
-            <div id="navigation">
-                <nav>
-                    <ul>
-                        <li><a href="">HOME</a></li>
-                        <li><a href="">SECOND</a></li>
-                        <li><a href="">THIRD</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
-    <main id="main">
-        <div id="background"
-            style="background-image: url('https://mycareer.douglascollege.ca/content/documents/landingPageUploads/2019-06-28/r1004207873837977889521114853377473384225105839339r/Douglas_Student_Life_6841_Print_OrbisEditr529151934743251476513800308133308387358321979332r.jpg');">
-            <div id="carouselContainer">
-                <div id="carouselExampleIndicators" class="carousel slide">
-                    <!-- <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                    </ol> -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div id="carouselContent">
-                                <h3>Select the courses you wish to upload to Gmail</h3>
-                                <div id="course_selector">
-                                    <form action="/action_page.php" method="get" autocomplete="on">
-                                        <label for="file-upload" class="custom-file-upload">
-                                            Upload PDF
-                                        </label>
-                                        <input type="file" name="uploadField" id="file-upload" multiple>
-                                        <br>
-                                        <div id="selectedFiles"></div>
-                                    </form>
+        </header>
+        <main id="main">
+            <div
+                id="background"
+                style="background-image: url('https://mycareer.douglascollege.ca/content/documents/landingPageUploads/2019-06-28/r1004207873837977889521114853377473384225105839339r/Douglas_Student_Life_6841_Print_OrbisEditr529151934743251476513800308133308387358321979332r.jpg');">
+                <div id="carouselContainer">
+                    <div id="carouselExampleIndicators" class="carousel slide">
+                        <!-- <ol class="carousel-indicators"> <li
+                        data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li> <li
+                        data-target="#carouselExampleIndicators" data-slide-to="2"></li> <li
+                        data-target="#carouselExampleIndicators" data-slide-to="3"></li> <li
+                        data-target="#carouselExampleIndicators" data-slide-to="4"></li> </ol> -->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div id="carouselContent">
+                                    <h3>Select the courses you wish to upload to Gmail</h3>
+                                    <div id="course_selector">
+                                        <form action="/action_page.php" method="get" autocomplete="on">
+                                            <label for="file-upload" class="custom-file-upload">
+                                                Upload PDF
+                                            </label>
+                                            <input type="file" name="uploadField" id="file-upload" multiple="multiple">
+                                            <br>
+                                            <div id="selectedFiles"></div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!--Second page-->
-                        <div class="carousel-item">
-                            <div id="carouselContent">
+                            <!--Second page (Loading bar)-->
+                            <div class="carousel-item">
+                                <div id="carouselContent">
 
-                                <h1>Loading</h1><br><br>
+                                    <h1>Loading</h1><br><br>
 
-                                <div id="myBar"></div>
+                                    <div id="myBar"></div>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div id="modal">
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#exampleModal">
-                                    Edit
-                                </button>
+                            <div class="carousel-item">
+                                <div id="modal">
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary"
+                                        data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        Edit
+                                    </button>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Course</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-
-                                                <!-- Form appears only if the user clicks edit btn -->
-                                                <div>
-                                                    <form>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <label for="inputEmail4">Email</label>
-                                                                <input type="email" class="form-control"
-                                                                    id="inputEmail4">
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label for="inputPassword4">Password</label>
-                                                                <input type="password" class="form-control"
-                                                                    id="inputPassword4">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="inputAddress">Address</label>
-                                                            <input type="text" class="form-control" id="inputAddress"
-                                                                placeholder="1234 Main St">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="inputAddress2">Address 2</label>
-                                                            <input type="text" class="form-control" id="inputAddress2"
-                                                                placeholder="Apartment, studio, or floor">
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <label for="inputCity">City</label>
-                                                                <input type="text" class="form-control" id="inputCity">
-                                                            </div>
-                                                            <div class="form-group col-md-4">
-                                                                <label for="inputState">State</label>
-                                                                <select id="inputState" class="form-control">
-                                                                    <option selected>Choose...</option>
-                                                                    <option>...</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group col-md-2">
-                                                                <label for="inputZip">Zip</label>
-                                                                <input type="text" class="form-control" id="inputZip">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    id="gridCheck">
-                                                                <label class="form-check-label" for="gridCheck">
-                                                                    Check me out
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary">Sign in</button>
-                                                    </form>
+                                    <!-- third page-->
+                                    <div
+                                        class="modal fade"
+                                        id="exampleModal"
+                                        tabindex="-1"
+                                        role="dialog"
+                                        aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Course</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
+                                                <div class="modal-body">
 
+                                                    <!-- Form appears only if the user clicks edit btn -->
+                                                    <div>
+                                                        <form>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="inputEmail4">Email</label>
+                                                                    <input type="email" class="form-control" id="inputEmail4">
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="inputPassword4">Password</label>
+                                                                    <input type="password" class="form-control" id="inputPassword4">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputAddress">Address</label>
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="inputAddress"
+                                                                    placeholder="1234 Main St">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="inputAddress2">Address 2</label>
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="inputAddress2"
+                                                                    placeholder="Apartment, studio, or floor">
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="inputCity">City</label>
+                                                                    <input type="text" class="form-control" id="inputCity">
+                                                                </div>
+                                                                <div class="form-group col-md-4">
+                                                                    <label for="inputState">State</label>
+                                                                    <select id="inputState" class="form-control">
+                                                                        <option selected="selected">Choose...</option>
+                                                                        <option>...</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-2">
+                                                                    <label for="inputZip">Zip</label>
+                                                                    <input type="text" class="form-control" id="inputZip">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                                    <label class="form-check-label" for="gridCheck">
+                                                                        Check me out
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Sign in</button>
+                                                        </form>
+                                                    </div>
 
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </div>
-                        
-                        <div class="carousel-item">
-                            <div id="carouselContent">
                             </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="carouselContent">
-                                <h3 class="wow fadeInLeftBig">Thanks for using our app!</h3>
-                                <!-- Cat picture -->
-                                <img src="img/developer cat 2.jpg" alt="Developer cat" id="catImg"
-                                    style="display: block; margin: 0 auto; width:50%; height: 10%">
+                            <!-- fourth page-->
+                            <!-- Problem here When the brower screen is bigger the app icon is moved to
+                            another line -->
+                            <div class="carousel-item">
+                                <h3 class="wow fadeInLeftBig">Choose one app which you want to use</h3>
+                                <div class="box">
+                                    <!-- When user press button it shows the message about the app information -->
+
+                                    <button onclick="GoogleAPI()">
+                                        <img src="img/google Cal_logo.jpg" alt="Google Calendar"></button>
+                                    <button onclick="outLookAPI()">
+                                        <img src="img/outlook Cal_logo.jpg" alt="Outlook Calendar"></button>
+                                        
+                                </div>
+
+                                <script>
+                                    function outLookAPI() {
+                                        alert("You use the MS Outlook");
+                                    }
+                                    function GoogleAPI() {
+                                        alert("You use the Google Calendar");
+                                    }
+                                </script>
+                                <div id="carouselContent"></div>
+                            </div>
+                            <!-- Last page-->
+                            <div class="carousel-item">
+                                <div class="carouselContent">
+                                    <h3 class="wow fadeInLeftBig">Thanks for using our app!</h3>
+                                    <!-- Cat picture -->
+                                    <img src="img/developer cat 2.jpg" alt="Developer cat" id="catImg">
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <a
+                        class="carousel-control-prev"
+                        href="#carouselExampleIndicators"
+                        role="button"
+                        data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a
+                        class="carousel-control-next"
+                        href="#carouselExampleIndicators"
+                        role="button"
+                        data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
-        </div>
 
-    </main>
+        </main>
 
-    <footer>
-        <p>Produced by students at Douglas College Developer Club.</p>
-    </footer>
-</body>
+        <footer>
+            <p>Produced by students at Douglas College Developer Club.</p>
+        </footer>
+    </body>
 
 </html>

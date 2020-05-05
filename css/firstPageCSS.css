@@ -185,6 +185,7 @@ a:visited {
 }
 
 .calendar-choices-container {
+    height: 100%;
     text-align: center;
     margin: 25px;
 }
@@ -194,5 +195,5 @@ a:visited {
 }
 
 .calendar-choices-container button {
-    width: 47%;
+    width: 30%;
 }

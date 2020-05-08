@@ -3,7 +3,6 @@ var i = 0;
 function move() {
 
     document.getElementById('backButton').disabled = true;
-    // backButton.setAttribute('disabled', true);  
 
     if (i == 0) {
         i = 1;
@@ -76,6 +75,7 @@ function addCourseForms() {
 
         var card = document.createElement('div');
         card.setAttribute('class', 'card');
+        card.setAttribute('id', 'card' + i);
 
         // collapse header
         var cardHeader = document.createElement('div');
@@ -93,8 +93,17 @@ function addCourseForms() {
         collapseButton.setAttribute('aria-controls', 'collapse' + i);
         collapseButton.textContent = 'Course #' + (i+1);
 
+        var deleteButton = document.createElement('input');
+        deleteButton.setAttribute('id', 'deleteCourse' + i);
+        deleteButton.setAttribute('class', 'btn-danger');
+        deleteButton.setAttribute('type', 'submit');
+        deleteButton.setAttribute('value', 'X');
+        deleteButton.setAttribute("style", 'float: right; height: 30px; width: 30px');
+        deleteButton.setAttribute("onclick", 'removeCourse(' + i + ');');
+
         cardHeader.appendChild(header5);
         cardHeader.appendChild(collapseButton);
+        cardHeader.appendChild(deleteButton);
 
         //create body of collapse element
         var collapse = document.createElement('div');
@@ -109,17 +118,45 @@ function addCourseForms() {
         // put form inside the collapse body
         var form = document.createElement('form');
         form.setAttribute('id', 'editForm' + i);
+        form.setAttribute('class', 'editFormClass' + i);
         
-        var courseNameLable = document.createElement('span');
-        courseNameLable.textContent = "Course Name: ";
+        var courseNameLabel = document.createElement('span');
+        courseNameLabel.textContent = "Course Name: ";
 
         var courseNameInput = document.createElement('input');
         courseNameInput.setAttribute('id', 'courseName' + i);
         courseNameInput.setAttribute('type', 'text');
         courseNameInput.setAttribute('min', '4')
 
-        form.appendChild(courseNameLable);
+        var newLine = document.createElement('br');
+
+        form.appendChild(courseNameLabel);
         form.appendChild(courseNameInput);
+        form.appendChild(newLine);
+
+        var courseInstrLabel = document.createElement('span');
+        courseInstrLabel.textContent = "Instructor: ";
+        var courseInstrInput = document.createElement('input');
+        courseInstrInput.setAttribute('id', 'courseInstructor' + i);
+        courseInstrInput.setAttribute('type', 'text');
+        courseInstrInput.setAttribute('min', '4')
+
+        var newLine = document.createElement('br');
+        form.appendChild(courseInstrLabel);
+        form.appendChild(courseInstrInput);
+        form.appendChild(newLine);
+
+        var courseDateLabel = document.createElement('span');
+        courseDateLabel.textContent = "Date: ";
+        var courseDateInput = document.createElement('input');
+        courseDateInput.setAttribute('id', 'courseDate' + i);
+        courseDateInput.setAttribute('type', 'text');
+        courseDateInput.setAttribute('min', '4')
+
+        var newLine = document.createElement('br');
+        form.appendChild(courseDateLabel);
+        form.appendChild(courseDateInput);
+        form.appendChild(newLine);
 
         cardBody.appendChild(form);
 
@@ -139,3 +176,12 @@ function addCourseForms() {
     accordion.appendChild(acceptButton);
 
 }
+
+function removeCourse(i) {
+
+    console.log(i);
+    var accordion = document.getElementById('accordion');
+    var courseToRemove = document.getElementById('card' + i);
+    accordion.removeChild(courseToRemove);
+
+}   

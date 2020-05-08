@@ -159,6 +159,11 @@ a:visited {
     100% { width: 80%;left:0;right:0}  
 } */
 
+#accordion {
+    color: black;
+    font-size: 0.5em;
+}
+
 #carouselContainer {
     margin: auto;
     padding-top: 2.5%;

@@ -22,6 +22,11 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
         <script src="functions/ShowCourses.js"></script>
+        <script>
+            onload=function() {
+                document.getElementById('backButton').disabled = true;
+            }
+        </script>
 
     </head>
 
@@ -83,7 +88,20 @@
                                         </form>
                                     </div>
                                 </div>
+                                <!-- Script for loading start -->
+                                <!-- <script>
+                                    var i = document.getElementById("nextButton").addEventListener('click', move);
+
+                                    
+
+                                    if (i == null) {
+                                        console.log("is null");
+                                    } else {
+                                    console.log(i);
+                                    }
+                                </script> -->
                             </div>
+                            
                             <!--Second page (Loading bar)-->
                             <div class="carousel-item">
                                 <div id="carouselContent">
@@ -92,7 +110,7 @@
                                     <input type="submit" onclick="move();">
                                 </div>
                             </div>
-                            <div class="carousel-item">
+                            <div class="carousel-item" style="overflow-y: scroll;">
                                 <div id="accordion"></div>
                             </div>
                             <!-- fourth page-->

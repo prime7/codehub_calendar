@@ -87,19 +87,13 @@
                             <!--Second page (Loading bar)-->
                             <div class="carousel-item">
                                 <div id="carouselContent">
-
                                     <h1>Loading</h1><br><br>
-
-                                    <div id="myBar"></div>
-
+                                    <div id="myBar">1%</div>
+                                    <input type="submit" onclick="move();">
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <input type="button" value="test" onclick="addCourseForms();">
-                                <div id="accordion">
-
-                                </div>
-
+                                <div id="accordion"></div>
                             </div>
                             <!-- fourth page-->
                             <!-- Problem here When the brower screen is bigger the app icon is moved to
@@ -110,7 +104,7 @@
                                     <!-- When user press button it shows the message about the app information -->
 
                                     <button onclick="GoogleAPI()">
-                                        <img src="img/google Cal_logo.jpg" alt="Google Calendar">
+                                         <img src="img/google Cal_logo.jpg" alt="Google Calendar">
                                     </button>
                                     <button onclick="outLookAPI()">
                                         <img src="img/outlook Cal_logo.jpg" alt="Outlook Calendar">
@@ -138,10 +132,10 @@
                             </div>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" class="back" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" class="back" href="#carouselExampleIndicators" role="button" data-slide="prev" id="backButton" disabled=true>
                         Back
                     </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" id="nextButton">
                         Next
                     </a>
                 </div>

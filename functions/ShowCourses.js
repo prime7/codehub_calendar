@@ -1,6 +1,10 @@
 var i = 0;
 
 function move() {
+
+    document.getElementById('backButton').disabled = true;
+    // backButton.setAttribute('disabled', true);  
+
     if (i == 0) {
         i = 1;
         var elem = document.getElementById("myBar");
@@ -11,12 +15,21 @@ function move() {
             if (width >= 100) {
                 clearInterval(id);
                 i = 0;
+                document.getElementById('backButton').disabled = false;
+                next();
             } else {
                 width++;
                 elem.style.width = width + "%";
+                elem.innerHTML = width + "%";
             }
         }
     }
+    
+}
+
+function next(){
+    $("#carouselExampleIndicators").carousel(2);
+    addCourseForms();   
 }
 
 var selDiv = "";

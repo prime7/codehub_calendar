@@ -1,6 +1,6 @@
 /* CSS File for firstPage*/
 
-h1, h3 {
+h1{
     text-align: center;
 }
 .carousel-item h1{
@@ -8,6 +8,11 @@ h1, h3 {
     color: white;
     font-size: 50px;
 }
+h3 {
+    text-align: center;
+    padding-top: 0;
+}
+
 
 #header {
     display: flex;
@@ -179,8 +184,8 @@ a:visited {
 #catImg {
     display: block;
     margin: 0 auto; 
-    width:35%; 
-    height: 5%;
+    width:30%; 
+    height: 10%;
     padding-bottom: 30px;
     padding-top: 2.5%;
 }

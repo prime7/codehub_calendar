@@ -26,8 +26,6 @@ nav {
 }
 
 #navigation {
-    /* display: flex;
-    align-items: center; */
     margin: 1.5%;
     width: 40%;
 }
@@ -141,34 +139,6 @@ a:visited {
 #barContainer {
     margin: 5%;
 }
- /*
-#myBar::after {
-    content: "";
-    height: 30px;
-    background: green;
-    
-	position: absolute;
-    animation: loader 2s;
-    -webkit-animation: loader 2s;
-    -webkit-animation-delay: loader 2s;
-    animation-delay: 2s;
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
-    transition-timing-function: linear;
-    -webkit-transition-timing-function: linear;
-    bottom: 0px;
-    margin-left: 10%;
-}
-
-@keyframes loader {
-    0% {width: 0%;left:0;right:0}
-    100% { width: 80%;left:0;right:0} 
-}
-
-@-webkit-keyframes loader {
-    0% {width: 0%;left:0;right:0}
-    100% { width: 80%;left:0;right:0}  
-} */
 
 #accordion {
     color: black;
@@ -210,7 +180,31 @@ a:visited {
     
 }
 
+.carousel-control-next, .carousel-control-prev {
+    border: white 2px solid;
+    height: 60px;
+}
+
 .calendar-choices-container button {
     width: 30%;
     
+}
+
+#submitFilesLabel {
+    right: 12.5%;
+    top: 80%;
+}
+
+#acceptCoursesLabel {
+    top: 80%;
+    right: 0;
+    margin: 0;
+    margin-top: 7%;
+    margin-right: 7%;
+}
+
+#backButton {
+    top: 50%;
+    margin-left: 2.5%;
+    color: whitesmoke;
 }

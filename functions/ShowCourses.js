@@ -4,7 +4,7 @@ function move() {
 
     $("#carouselExampleIndicators").carousel(1);
 
-    document.getElementById('backButton').disabled = true;
+    // document.getElementById('backButton').disabled = true;
 
     setTimeout(function () {
 
@@ -18,7 +18,7 @@ function move() {
                 if (width >= 100) {
                     clearInterval(id);
                     i = 0;
-                    document.getElementById('backButton').disabled = false;
+                    // document.getElementById('backButton').disabled = false;
                     setTimeout(next, 1000);
                 } else {
                     width++;
@@ -193,8 +193,17 @@ function addCourseForms() {
     acceptButton.setAttribute('value', 'Accept');
     acceptButton.setAttribute('id', 'acceptButton');
     acceptButton.setAttribute('onclick', 'acceptCourses();');
+    acceptButton.setAttribute('hidden', true);
+    
+    var acceptCoursesLabel = document.createElement('label');
+    acceptCoursesLabel.setAttribute('onclick', 'acceptCourses();');
+    acceptCoursesLabel.setAttribute('id', 'acceptCoursesLabel');
+    acceptCoursesLabel.setAttribute('class', 'carousel-control-next');
+    acceptCoursesLabel.setAttribute('for', 'acceptButton');  
+    acceptCoursesLabel.textContent = "Accept";
 
     accordion.appendChild(acceptButton);
+    accordion.appendChild(acceptCoursesLabel);
 
 }
 

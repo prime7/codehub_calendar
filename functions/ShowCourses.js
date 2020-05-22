@@ -180,10 +180,19 @@ function addCourseForms() {
         accordion.appendChild(card);
     }
 
+    var addNewCourseBtn = document.createElement('input');
+    addNewCourseBtn.setAttribute('type', 'submit');
+    addNewCourseBtn.setAttribute('value', '+');
+    addNewCourseBtn.setAttribute('id', 'addNewCourse');
+    addNewCourseBtn.setAttribute('onclick', 'addNewCourse();');
+
+    accordion.appendChild(addNewCourseBtn);
+
     var acceptButton = document.createElement('input');
     acceptButton.setAttribute('type', 'submit');
     acceptButton.setAttribute('value', 'Accept');
     acceptButton.setAttribute('id', 'acceptButton');
+    acceptButton.setAttribute('onclick', 'acceptCourses();');
 
     accordion.appendChild(acceptButton);
 
@@ -191,9 +200,151 @@ function addCourseForms() {
 
 function removeCourse(i) {
 
-    console.log(i);
-    var accordion = document.getElementById('accordion');
-    var courseToRemove = document.getElementById('card' + i);
-    accordion.removeChild(courseToRemove);
-
+    var conf = confirm("Do you want to delete Course #" + (i+1) + "?");
+    if (conf) {
+        var accordion = document.getElementById('accordion');
+        var courseToRemove = document.getElementById('card' + i);
+        accordion.removeChild(courseToRemove);
+    }
 }   
+
+function addNewCourse() {
+
+    var accordion = document.getElementById('accordion');
+
+    // Remove buttons
+    var addNewCourse = document.getElementById('addNewCourse');
+    accordion.removeChild(addNewCourse);
+
+    var acceptButton = document.getElementById('acceptButton');
+    accordion.removeChild(acceptButton);
+
+    // Get last course id on the page
+    // if there is no courses to edit yet
+    var i;
+
+    try {
+
+        var allCards = document.getElementsByClassName('card');
+
+        var lastCard = allCards[allCards.length - 1].getAttribute('id');
+        var lastCardLength = (allCards[allCards.length - 1].getAttribute('id').length);
+        var lastIdx = parseInt(lastCard[lastCardLength - 1]);
+
+        i = lastIdx + 1;
+    } catch {
+        i = 0;
+    }
+
+    var card = document.createElement('div');
+    card.setAttribute('class', 'card');
+    card.setAttribute('id', 'card' + i);
+
+    // collapse header
+    var cardHeader = document.createElement('div');
+    cardHeader.setAttribute('id', 'heading' + i);
+    cardHeader.setAttribute('class', 'card-header');
+        
+    var header5 = document.createElement('h5');
+    header5.setAttribute('class', 'mb-0');
+
+    var collapseButton = document.createElement('button');
+    collapseButton.setAttribute('class', 'btn btn-link');
+    collapseButton.setAttribute('data-toggle', 'collapse');
+    collapseButton.setAttribute('data-target', '#collapse' + i);
+    collapseButton.setAttribute('aria-expanded', 'true');
+    collapseButton.setAttribute('aria-controls', 'collapse' + i);
+    collapseButton.textContent = 'Course #' + (i+1);
+
+    var deleteButton = document.createElement('input');
+    deleteButton.setAttribute('id', 'deleteCourse' + i);
+    deleteButton.setAttribute('class', 'btn-danger');
+    deleteButton.setAttribute('type', 'submit');
+    deleteButton.setAttribute('value', 'X');
+    deleteButton.setAttribute("style", 'float: right; height: 30px; width: 30px');
+    deleteButton.setAttribute("onclick", 'removeCourse(' + i + ');');
+
+    cardHeader.appendChild(header5);
+    cardHeader.appendChild(collapseButton);
+    cardHeader.appendChild(deleteButton);
+
+    //create body of collapse element
+    var collapse = document.createElement('div');
+    collapse.setAttribute('id', 'collapse' + i);
+    collapse.setAttribute('class', 'collapse show'); 
+    collapse.setAttribute('aria-labelledby', 'heading' + i); 
+    collapse.setAttribute('data-parent', '#accordion');
+
+    var cardBody = document.createElement('div');
+    cardBody.setAttribute('class', 'card-body');
+
+    // put form inside the collapse body
+    var form = document.createElement('form');
+    form.setAttribute('id', 'editForm' + i);
+    form.setAttribute('class', 'editFormClass' + i);
+        
+    var courseNameLabel = document.createElement('span');
+    courseNameLabel.textContent = "Course Name: ";
+
+    var courseNameInput = document.createElement('input');
+    courseNameInput.setAttribute('id', 'courseName' + i);
+    courseNameInput.setAttribute('type', 'text');
+    courseNameInput.setAttribute('min', '4')
+
+    var newLine = document.createElement('br');
+
+    form.appendChild(courseNameLabel);
+    form.appendChild(courseNameInput);
+    form.appendChild(newLine);
+
+    var courseInstrLabel = document.createElement('span');
+    courseInstrLabel.textContent = "Instructor: ";
+    var courseInstrInput = document.createElement('input');
+    courseInstrInput.setAttribute('id', 'courseInstructor' + i);
+    courseInstrInput.setAttribute('type', 'text');
+    courseInstrInput.setAttribute('min', '4')
+
+    var newLine = document.createElement('br');
+    form.appendChild(courseInstrLabel);
+    form.appendChild(courseInstrInput);
+    form.appendChild(newLine);
+
+    var courseDateLabel = document.createElement('span');
+    courseDateLabel.textContent = "Date: ";
+    var courseDateInput = document.createElement('input');
+    courseDateInput.setAttribute('id', 'courseDate' + i);
+    courseDateInput.setAttribute('type', 'text');
+    courseDateInput.setAttribute('min', '4')
+
+    var newLine = document.createElement('br');
+    form.appendChild(courseDateLabel);
+    form.appendChild(courseDateInput);
+    form.appendChild(newLine);
+
+    cardBody.appendChild(form);
+
+    collapse.appendChild(cardBody);
+        
+    card.appendChild(cardHeader);
+    card.appendChild(collapse);
+
+    accordion.appendChild(card);
+
+    // Return buttons
+    var addNewCourseBtn = document.createElement('input');
+    addNewCourseBtn.setAttribute('type', 'submit');
+    addNewCourseBtn.setAttribute('value', '+');
+    addNewCourseBtn.setAttribute('id', 'addNewCourse');
+    addNewCourseBtn.setAttribute('onclick', 'addNewCourse();');
+
+    accordion.appendChild(addNewCourseBtn);
+
+    var acceptButton = document.createElement('input');
+    acceptButton.setAttribute('type', 'submit');
+    acceptButton.setAttribute('value', 'Accept');
+    acceptButton.setAttribute('id', 'acceptButton');
+    acceptButton.setAttribute('onclick', 'acceptCourses();');
+
+    accordion.appendChild(acceptButton);
+
+}

@@ -19,7 +19,7 @@ function move() {
                     clearInterval(id);
                     i = 0;
                     document.getElementById('backButton').disabled = false;
-                    setTimeout(next, 1500);
+                    setTimeout(next, 1000);
                 } else {
                     width++;
                     elem.style.width = width + "%";
@@ -347,4 +347,19 @@ function addNewCourse() {
 
     accordion.appendChild(acceptButton);
 
+}
+
+function checkFiles() {
+
+    var filePath = document.getElementById('file-upload').value;
+
+    // Here also we can check PDF extention
+    if (filePath) {
+        document.getElementById('submitFiles').disabled = false;
+        // document.getElementById('nextButton').disabled = false;
+    } else {
+        document.getElementById('submitFiles').disabled = true;
+        // document.getElementById('nextButton').disabled = true;
+}
+    
 }

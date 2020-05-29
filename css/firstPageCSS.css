@@ -11,6 +11,7 @@ h1{
 h3 {
     text-align: center;
     padding-top: 0;
+    color: white;
 }
 
 
@@ -187,7 +188,10 @@ a:visited {
 
 .calendar-choices-container button {
     width: 30%;
-    
+    background: none;
+    border:0;
+    outline: 0;
+/*Removed the border of button and background color*/
 }
 
 #submitFilesLabel {

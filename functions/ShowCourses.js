@@ -37,23 +37,52 @@ function next() {
 }
 
 function acceptCourses() {
-    var NumberOfCard = document.getElementByClassName('card').value;
-    var courseName = document.getElementsByClassName('editFormClass courseName').value;
-    var courseInstructor = document.getElementsByClassName('editFormClass courseInstructor').value;
-    var courseDate = document.getElementsByClassName('editFormClass courseDate').value;
+    //error occur 
+    var valid = true;
+    var NumberOfCard = document.getElementsByClassName('card');
+    //class courseName can't assigned more than card 2
+    var courseName = document.getElementsByClassName(' courseName');
+    var courseInstructor = document.getElementsByClassName(' courseInstructor');
+    var courseDate = document.getElementsByClassName(' courseDate');
 
-    for (i = 0; i < card.length; i++) {
+    if (valid) {
 
-        courseName[i]
-        courseInstructor[i]
-        courseDate[i]
+        for (i = 0; i < NumberOfCard.length; i++) {
+
+
+          
+            if (courseName[i].value == "") {
+                valid = false;
+
+            }
+            if (courseInstructor[i].value == "") {
+                valid = false;
+
+            }
+              if (courseDate[i].value == "") {
+                valid = false;
+
+            }
+
+        }
+
+        if (valid == false) {
+            alert("Please fill the all the fields")
+        }
+    }
+
+    if (valid == true) {
+        // read all values
+        // then go to another slide
+        $("#carouselExampleIndicators").carousel(3);
     }
 
 
 
-    // read all values
-    // then go to another slide
-    $("#carouselExampleIndicators").carousel(3);
+
+
+
+
 }
 
 var selDiv = "";

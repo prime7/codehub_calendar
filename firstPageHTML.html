@@ -4,20 +4,13 @@
 <head>
     <title>DSU course uploader</title>
     <link rel="stylesheet" type="text/css" href="css/firstPageCSS.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="functions/ShowCourses.js"></script>
     <script>
-        onload = function () {
+        onload = function() {
             document.getElementById('submitFiles').disabled = true;
         }
     </script>
@@ -29,16 +22,14 @@
         <div id="header">
             <div>
                 <a href="">
-                    <img id="DClogo"
-                        src="https://mycareer.douglascollege.ca/site/images/2019-06-28/r48833966953742647128013795923362156528757155775853r/DOUGLAS_LOGO_landingr064588648236895256653031303197775090406180383864r.png"
-                        alt="">
+                    <img id="DClogo" src="https://mycareer.douglascollege.ca/site/images/2019-06-28/r48833966953742647128013795923362156528757155775853r/DOUGLAS_LOGO_landingr064588648236895256653031303197775090406180383864r.png" alt="">
                 </a>
             </div>
             <div id="mainHeading">
                 <h1>Grape</h1>
             </div>
             <div id="navigation">
-<!--
+                <!--
                 <nav>
                     <ul>
                         <li>
@@ -57,8 +48,7 @@
         </div>
     </header>
     <main id="main">
-        <div id="background"
-            style="background-image: url('https://mycareer.douglascollege.ca/content/documents/landingPageUploads/2019-06-28/r1004207873837977889521114853377473384225105839339r/Douglas_Student_Life_6841_Print_OrbisEditr529151934743251476513800308133308387358321979332r.jpg');">
+        <div id="background" style="background-image: url('https://mycareer.douglascollege.ca/content/documents/landingPageUploads/2019-06-28/r1004207873837977889521114853377473384225105839339r/Douglas_Student_Life_6841_Print_OrbisEditr529151934743251476513800308133308387358321979332r.jpg');">
             <div id="carouselContainer">
                 <div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
                     <div class="carousel-inner">
@@ -70,14 +60,12 @@
                                         <label for="file-upload" class="custom-file-upload">
                                             Upload PDF
                                         </label>
-                                        <input type="file" name="uploadField" id="file-upload" multiple="multiple"
-                                            onchange="checkFiles();">
+                                        <input type="file" name="uploadField" id="file-upload" multiple="multiple" onchange="checkFiles();">
                                         <br>
                                         <div id="selectedFiles"></div>
                                     </form>
                                     <input type="submit" id="submitFiles" onclick="move();" hidden>
-                                    <label for="submitFiles" class="carousel-control-next"
-                                        id="submitFilesLabel">Submit</label>
+                                    <label for="submitFiles" class="carousel-control-next" id="submitFilesLabel">Submit</label>
                                 </div>
                             </div>
                         </div>
@@ -91,13 +79,13 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Third page Course Card-->
 
                         <div class="carousel-item" style="overflow-y: scroll;">
                             <div id="accordion"></div>
                         </div>
+
                         <!-- fourth page-->
-                        <!-- Problem here When the brower screen is bigger the app icon is moved to
-                            another line -->
                         <div class="carousel-item">
                             <h3 class="wow fadeInLeftBig">Choose one app which you want to use</h3>
                             <div class="calendar-choices-container">
@@ -113,13 +101,13 @@
                                 </button>
 
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators"
-                                role="button" data-slide="prev" id="backButton">Back</a>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" id="backButton">Back</a>
 
                             <script>
                                 function outLookAPI() {
                                     alert("You use the MS Outlook");
                                 }
+
                                 function GoogleAPI() {
                                     alert("You use the Google Calendar");
                                 }
@@ -143,5 +131,4 @@
     <footer>
         <p>Produced by students at Douglas College Developer Club.</p>
     </footer>
-</body>
-</html>
+</body></html>

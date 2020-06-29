@@ -45,36 +45,21 @@ function acceptCourses() {
     var courseInstructor = document.getElementsByClassName(' courseInstructor');
     var courseDate = document.getElementsByClassName(' courseDate');
 
-    if (valid) {
 
-        for (i = 0; i < NumberOfCard.length; i++) {
-
-
-          
-            if (courseName[i].value == "") {
-                valid = false;
-
-            }
-            if (courseInstructor[i].value == "") {
-                valid = false;
-
-            }
-              if (courseDate[i].value == "") {
-                valid = false;
-
-            }
-
-        }
-
-        if (valid == false) {
-            alert("Please fill the all the fields")
+    for (i = 0; i < NumberOfCard.length; i++) {
+        if (courseName[i].value == "" 
+                || courseInstructor[i].value == "" 
+                || courseDate[i].value == "") {
+            valid = false;
         }
     }
 
-    if (valid == true) {
+    if (valid) {
         // read all values
         // then go to another slide
         $("#carouselExampleIndicators").carousel(3);
+    } else {
+        alert("Please fill the all the fields");
     }
 
 
@@ -242,7 +227,7 @@ function addCourseForms() {
     acceptButton.setAttribute('hidden', true);
 
     var acceptCoursesLabel = document.createElement('label');
-    acceptCoursesLabel.setAttribute('onclick', 'acceptCourses();');
+    acceptCoursesLabel.setAttribute('onclick', 'acceptCourses');
     acceptCoursesLabel.setAttribute('id', 'acceptCoursesLabel');
     acceptCoursesLabel.setAttribute('class', 'carousel-control-next');
     acceptCoursesLabel.setAttribute('for', 'acceptButton');

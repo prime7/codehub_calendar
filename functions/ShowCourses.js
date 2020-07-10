@@ -45,13 +45,29 @@ function acceptCourses() {
     var courseInstructor = document.getElementsByClassName(' courseInstructor');
     var courseDate = document.getElementsByClassName(' courseDate');
 
+    // invalid letter for instructor name format
+    var invalid = ["@", "#", "$"];
 
     for (i = 0; i < NumberOfCard.length; i++) {
-        if (courseName[i].value == "" 
-                || courseInstructor[i].value == "" 
-                || courseDate[i].value == "") {
+        if (courseName[i].value == "" ||
+            courseInstructor[i].value == "" ||
+            courseDate[i].value == "") {
             valid = false;
         }
+
+
+   
+        
+        for (i = 0; i < invalid.length; i++) {
+
+            if ((courseName[i]).value.equals(invalid[i])) {
+                valid = false;
+            }
+        }
+
+
+
+
     }
 
     if (valid) {

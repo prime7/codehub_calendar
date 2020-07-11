@@ -27,6 +27,7 @@ Temporary Items
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
+__pycache__
 *.py[cod]
 
 # C extensions
@@ -93,5 +94,4 @@ test.txt
 # DOC: https://stackoverflow.com/questions/4308610/how-to-ignore-certain-files-in-git
 # git rm --cached -r name_of_file
 media/
-static/
 

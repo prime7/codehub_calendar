@@ -46,7 +46,6 @@ function acceptCourses() {
     var courseDate = document.getElementsByClassName(' courseDate');
 
     // invalid letter for instructor name format
-    var invalid = ["@", "#", "$", "%", "^", "&", "*", "(", ")"];
 
     for (let i = 0; i < NumberOfCard.length; i++) {
         if (courseName[i].value == "" ||
@@ -58,12 +57,15 @@ function acceptCourses() {
     }
 
     for (let i = 0; i < NumberOfCard.length; i++) {
-        if (!courseName[i].value.match(/[A-Z]{4} \d{4}/)) valid = false;
+        if (!courseName[i].value.match(/[A-Z]{4} \d{4}/)) {valid = false;} 
+        // VALID Course name ex CSIS1175
 
 
-        if (!courseInstructor[i].value.match(/^[A-z ]+$/)) valid = false;
+        if (!courseInstructor[i].value.match(/^[A-z ]+$/)) {valid = false;}
+        // VALID ONLY LETTER
 
-        if (!courseDate[i].value.match(/^[A-z ]+$/)) valid = false;
+        if (!courseDate[i].value.match(/^[A-z ]+$/)) {valid = false;}
+        // VALID ONLY LETTER
 
 
 

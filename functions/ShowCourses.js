@@ -46,36 +46,40 @@ function acceptCourses() {
     var courseDate = document.getElementsByClassName(' courseDate');
 
     // invalid letter for instructor name format
-    var invalid = ["@", "#", "$"];
+    var invalid = ["@", "#", "$", "%", "^", "&", "*", "(", ")"];
 
-    for (i = 0; i < NumberOfCard.length; i++) {
+    for (let i = 0; i < NumberOfCard.length; i++) {
         if (courseName[i].value == "" ||
             courseInstructor[i].value == "" ||
             courseDate[i].value == "") {
             valid = false;
         }
 
+    }
 
-   
-        
-        for (i = 0; i < invalid.length; i++) {
+    for (let i = 0; i < NumberOfCard.length; i++) {
+        if (!courseName[i].value.match(/[A-Z]{4} \d{4}/)) valid = false;
 
-            if ((courseName[i]).value.equals(invalid[i])) {
-                valid = false;
-            }
-        }
+
+        if (!courseInstructor[i].value.match(/^[A-z ]+$/)) valid = false;
+
+        if (!courseDate[i].value.match(/^[A-z ]+$/)) valid = false;
+
+
 
 
 
 
     }
 
+
     if (valid) {
         // read all values
         // then go to another slide
         $("#carouselExampleIndicators").carousel(3);
     } else {
-        alert("Please fill the all the fields");
+        alert("Please fill the all the fields with valid letters");
+
     }
 
 

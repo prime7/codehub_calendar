@@ -63,9 +63,9 @@ function acceptCourses() {
 
         if (!courseInstructor[i].value.match(/^[A-z ]+$/)) {valid = false;}
         // VALID ONLY LETTER
-
-        if (!courseDate[i].value.match(/^[A-z ]+$/)) {valid = false;}
-        // VALID ONLY LETTER
+//
+//        if (!courseDate[i].value.match(/^[A-z ]+$/)) {valid = false;}
+//        // VALID ONLY LETTER
 
 
 

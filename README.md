@@ -24,8 +24,6 @@ Django
 Tabula.py
 Bootstrap
 
-file:///Applications/WhatsApp.app/Contents/Resources/app.asar/index.html#
-
 **Coding Conventions**
 
 Please make sure to add comments to any JS or Python code your write

@@ -1,13 +1,102 @@
-var i = 0;
+window.onload = function() {
+    init();
+}
 
-function move() {
+function init() {
+    document.querySelector('#file-upload').addEventListener('change', handleFileSelect, false);  
+}
+
+/* SLIDE 1 STUFF  */
+function handleFileSelect(e) {
+    var selDiv = document.querySelector("#selectedFiles");
+
+    if (!e.target.files) return;
+
+    var files = e.target.files;
+    for (var i = 0; i < files.length; i++) {
+        var f = files[i];
+
+        selDiv.innerHTML += f.name + "<br/>";
+
+    }
+
+    document.querySelector("#submitFile").disabled = false;
+}
+
+function checkFiles() {
+    var filePath = document.getElementById('file-upload').value;
+    var hasErrors = false;
+    var errors = [];
+
+    // Here also we can check PDF extention
+    if (filePath) {
+
+        var uploadedFiles = document.getElementById('file-upload');
+
+        for (var i = 0; i < uploadedFiles.files.length; i++) {
+
+            console.log(Math.round(uploadedFiles.files[i].size/1024));
+            var ext = uploadedFiles.files[i].name.substr(-3);
+
+            if (ext!== "pdf")  {
+
+                errors.push("Sorry, file with this extension can't be uploaded");
+                hasErrors = true;
+                break;
+
+            }
+
+            if (Math.round(uploadedFiles.files[i].size/1024) > 2000)  {
+
+                errors.push("Sorry, you cannot uplod files larger than 2 Mb");
+                hasErrors = true;
+                break;
+
+            }
+        } 
+
+        if (!hasErrors) {
+            /*
+            TODO: 
+            Here would be where we want to send the AJAX request to our python script
+            sending the files we have to convert. We will call the sartLoadingScreen() method 
+            to go to the next slide, (loading page), here we will need to wait for
+            the server to respond back to us before we can move from the loading page.
+            Currently, move is implemented with a timer for the loading bar. This will need to
+            be changed to vaguely resemble the time it takes for the server to respond
+            from parsing the file(s)
+            */
+            startLoadingScreen();
+        } else {
+
+            showErrorMessages(errors);
+        }
+
+    } else {
+
+        document.getElementById('submitFile').disabled = true;
+
+    }
+    
+}
+
+function showErrorMessages(errors) {
+    let errorMsg = ""
+    for (var i = 0; i < errors.length; i++) {
+        errorMsg += errors[i] + ". ";
+    }
+    alert(errorMsg);
+}
+
+/* SLIDE 2 STUFF  */
+function startLoadingScreen() {
 
     $("#carouselExampleIndicators").carousel(1);
 
     // document.getElementById('backButton').disabled = true;
 
     setTimeout(function () {
-
+        let i = 0;
         if (i == 0) {
             i = 1;
             var elem = document.getElementById("myBar");
@@ -36,88 +125,7 @@ function next() {
     addCourseForms();
 }
 
-function acceptCourses() {
-    //error occur 
-    var valid = true;
-    var NumberOfCard = document.getElementsByClassName('card');
-    //class courseName can't assigned more than card 2
-    var courseName = document.getElementsByClassName(' courseName');
-    var courseInstructor = document.getElementsByClassName(' courseInstructor');
-    var courseDate = document.getElementsByClassName(' courseDate');
-
-    // invalid letter for instructor name format
-
-    for (let i = 0; i < NumberOfCard.length; i++) {
-        if (courseName[i].value == "" ||
-            courseInstructor[i].value == "" ||
-            courseDate[i].value == "") {
-            valid = false;
-        }
-
-    }
-
-    for (let i = 0; i < NumberOfCard.length; i++) {
-        if (!courseName[i].value.match(/[A-Z]{4} \d{4}/)) {valid = false;} 
-        // VALID Course name ex CSIS1175
-
-
-        if (!courseInstructor[i].value.match(/^[A-z ]+$/)) {valid = false;}
-        // VALID ONLY LETTER
-//
-//        if (!courseDate[i].value.match(/^[A-z ]+$/)) {valid = false;}
-//        // VALID ONLY LETTER
-
-
-
-
-
-
-    }
-
-
-    if (valid) {
-        // read all values
-        // then go to another slide
-        $("#carouselExampleIndicators").carousel(3);
-    } else {
-        alert("Please fill the all the fields with valid letters");
-
-    }
-
-
-
-
-
-
-
-}
-
-var selDiv = "";
-
-document.addEventListener("DOMContentLoaded", init, false);
-
-function init() {
-    document.querySelector('#file-upload').addEventListener('change', handleFileSelect, false);
-    selDiv = document.querySelector("#selectedFiles");
-}
-
-function handleFileSelect(e) {
-
-    if (!e.target.files) return;
-
-    selDiv.innerHTML = "";
-
-    var files = e.target.files;
-    for (var i = 0; i < files.length; i++) {
-        var f = files[i];
-
-        selDiv.innerHTML += f.name + "<br/>";
-
-    }
-
-}
-
-
+/* SLIDE 3 STUFF  */
 function addCourseForms() {
 
     var accordion = document.getElementById('accordion');
@@ -188,7 +196,8 @@ function addCourseForms() {
         var courseNameInput = document.createElement('input');
         courseNameInput.setAttribute('id', 'courseName' + i);
         courseNameInput.setAttribute('type', 'text');
-        courseNameInput.setAttribute('min', '4')
+        courseNameInput.setAttribute('min', '4');
+        courseNameInput.setAttribute('class', 'courseName');
 
         var newLine = document.createElement('br');
 
@@ -245,17 +254,17 @@ function addCourseForms() {
     acceptButton.setAttribute('value', 'Accept');
     acceptButton.setAttribute('id', 'acceptButton');
     acceptButton.setAttribute('onclick', 'acceptCourses();');
-    acceptButton.setAttribute('hidden', true);
+    // acceptButton.setAttribute('hidden', true);
 
-    var acceptCoursesLabel = document.createElement('label');
-    acceptCoursesLabel.setAttribute('onclick', 'acceptCourses');
-    acceptCoursesLabel.setAttribute('id', 'acceptCoursesLabel');
-    acceptCoursesLabel.setAttribute('class', 'carousel-control-next');
-    acceptCoursesLabel.setAttribute('for', 'acceptButton');
-    acceptCoursesLabel.textContent = "Accept";
+    // var acceptCoursesLabel = document.createElement('label');
+    // acceptCoursesLabel.setAttribute('onclick', 'acceptCourses');
+    // acceptCoursesLabel.setAttribute('id', 'acceptCoursesLabel');
+    // acceptCoursesLabel.setAttribute('class', 'carousel-control-next');
+    // acceptCoursesLabel.setAttribute('for', 'acceptButton');
+    // acceptCoursesLabel.textContent = "Accept";
 
     accordion.appendChild(acceptButton);
-    accordion.appendChild(acceptCoursesLabel);
+    // accordion.appendChild(acceptCoursesLabel);
 
 }
 
@@ -410,69 +419,52 @@ function addNewCourse() {
 
 }
 
-function checkFiles() {
+function acceptCourses() {
+    //error occur 
+    var valid = true;
+    var NumberOfCard = document.getElementsByClassName('card');
+    //class courseName can't assigned more than card 2
+    var courseName = document.getElementsByClassName('courseName');
+    var courseInstructor = document.getElementsByClassName('courseInstructor');
+    var courseDate = document.getElementsByClassName('courseDate');
 
-    var filePath = document.getElementById('file-upload').value;
-    var hasErrors = false;
-    
-    // Here also we can check PDF extention
-    if (filePath) {
+    // invalid letter for instructor name format
 
-        var uploadedFiles = document.getElementById('file-upload');
-
-        for (var i = 0; i < uploadedFiles.files.length; i++) {
-
-            console.log(Math.round(uploadedFiles.files[i].size/1024));
-            var ext = uploadedFiles.files[i].name.substr(-3);
-
-            if (ext!== "pdf")  {
-
-                errors.push("Sorry, file with this extension can't be uploaded");
-                hasErrors = true;
-                break;
-
-            }
-
-            if (Math.round(uploadedFiles.files[i].size/1024) > 2000)  {
-
-                errors.push("Sorry, you cannot uplod files larger than 2 Mb");
-                hasErrors = true;
-                break;
-
-            }
-        } 
-
-        if (!hasErrors) {
-            init();
-            document.getElementById('submitFiles').disabled = false;
-            var submitBtn = document.getElementById("submitFilesLabel");
-            // submitBtn.setAttribute("style", "color: rgb(1, 71, 30); border-color: rgb(1, 71, 30)");
-            // submitBtn.setAttribute("class", "coolBtn");
-            // submitBtn.setAttribute("style", "content: ''; position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: -1; background-color: var(--accent-color); transition: transform 300ms ease-in-out; transform: scaleX(0); transform-origin: left;");
-            
-            // #submitFilesLabel:hover::before,
-            // #submitFilesLabel:focus::before {
-            //     transform: scaleX(1);
-            // }');'")
-
-
-        } else {
-
-            showErrorMessages(errors);
+    for (let i = 0; i < NumberOfCard.length; i++) {
+        if (courseName[i].value == "" ||
+            courseInstructor[i].value == "" ||
+            courseDate[i].value == "") {
+            valid = false;
         }
 
+    }
+
+    for (let i = 0; i < NumberOfCard.length; i++) {
+        /*
+        TODO: 
+        please allow this to also auto Capitalize the course name for the user
+        */
+        if (!courseName[i].value.match(/[A-Z]{4} \d{4}/)) {valid = false;} 
+        // VALID Course name ex CSIS1175
+
+
+        if (!courseInstructor[i].value.match(/^[A-z ]+$/)) {valid = false;}
+        // VALID ONLY LETTER
+//
+//        if (!courseDate[i].value.match(/^[A-z ]+$/)) {valid = false;}
+//        // VALID ONLY LETTER
+
+    }
+
+    if (valid) {
+        // read all values
+        // then go to another slide
+        $("#carouselExampleIndicators").carousel(3);
     } else {
+        alert("Please fill the all the fields with valid letters");
 
-        document.getElementById('submitFiles').disabled = true;
-
-    }
-    
-}
-
-function showErrorMessages(err) {
-
-    for (var i = 0; i < err.length; i++) {
-        alert(err[i]);
     }
 
 }
+
+

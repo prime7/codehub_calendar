@@ -17,12 +17,6 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="static/js/show-courses.js"></script>
-    <script>
-        onload = function () {
-            document.getElementById('submitFiles').disabled = true;
-        }
-    </script>
-
 </head>
 
 <body>
@@ -67,20 +61,15 @@
                             <div id="carouselContent">
                                 <h3>Select the courses you wish to upload to Gmail</h3>
                                 <div id="course_selector">
-                                    <form action="/server" method="post" autocomplete="on"
-                                        enctype="multipart/form-data">
+                                    <form autocomplete="on" enctype="multipart/form-data" onsubmit="event.preventDefault(); checkFiles();">
                                         <label for="file-upload" class="custom-file-upload">
                                             Upload PDF
                                         </label>
                                         <input type="file" name="uploadField" id="file-upload" multiple="multiple">
                                         <br>
                                         <div id="selectedFiles"></div>
-                                        <input type="submit" id="submitFile">
-
+                                        <input type="submit" id="submitFile" disabled>
                                     </form>
-                                    <!--<label for="submitFiles" class="carousel-control-next"
-                                        id="submitFilesLabel">Submit</label> -->
-
                                 </div>
                             </div>
                         </div>

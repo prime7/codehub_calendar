@@ -82,7 +82,7 @@ When you close a github issue, make sure to add the Commit hash to that issue's 
     ```python
     import os
     class Config(object):
-        UPLOAD_FOLDER = "./application"
+        UPLOAD_FOLDER = "../application"
     ```
 
     `Note: you need to provide a path where you would like to keep pdf for processing`

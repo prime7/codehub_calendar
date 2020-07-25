@@ -4,6 +4,8 @@ function move() {
 
     $("#carouselExampleIndicators").carousel(1);
 
+    // document.getElementById('backButton').disabled = true;
+
     setTimeout(function () {
 
         if (i == 0) {
@@ -16,6 +18,7 @@ function move() {
                 if (width >= 100) {
                     clearInterval(id);
                     i = 0;
+                    // document.getElementById('backButton').disabled = false;
                     setTimeout(next, 1000);
                 } else {
                     width++;
@@ -54,10 +57,20 @@ function acceptCourses() {
     }
 
     for (let i = 0; i < NumberOfCard.length; i++) {
-        if (!courseName[i].value.match(/[A-Z]{4} \d{4}/)) { valid = false; }
+        if (!courseName[i].value.match(/[A-Z]{4} \d{4}/)) {valid = false;} 
         // VALID Course name ex CSIS1175
 
-        if (!courseInstructor[i].value.match(/^[A-z ]+$/)) { valid = false; }
+
+        if (!courseInstructor[i].value.match(/^[A-z ]+$/)) {valid = false;}
+        // VALID ONLY LETTER
+//
+//        if (!courseDate[i].value.match(/^[A-z ]+$/)) {valid = false;}
+//        // VALID ONLY LETTER
+
+
+
+
+
 
     }
 
@@ -70,6 +83,12 @@ function acceptCourses() {
         alert("Please fill the all the fields with valid letters");
 
     }
+
+
+
+
+
+
 
 }
 
@@ -108,6 +127,7 @@ function addCourseForms() {
     if (accordion.hasChildNodes()) {
         for (var i = 0; i < accordion.childNodes.length; i++) {
             accordion.removeChild(accordion.childNodes[i]);
+            // console.log(accordion.childNodes[i]);
         }
     }
 
@@ -159,17 +179,16 @@ function addCourseForms() {
 
         // put form inside the collapse body
         var form = document.createElement('form');
-        //form.setAttribute('id', 'editForm');
-        form.setAttribute('class', 'editFormClass');
+        form.setAttribute('id', 'editForm' + i);
+        form.setAttribute('class', 'editFormClass' + i);
 
         var courseNameLabel = document.createElement('span');
         courseNameLabel.textContent = "Course Name: ";
 
         var courseNameInput = document.createElement('input');
-        //        courseNameInput.setAttribute('id', 'courseName' + i);
+        courseNameInput.setAttribute('id', 'courseName' + i);
         courseNameInput.setAttribute('type', 'text');
-        courseNameInput.setAttribute('min', '4');
-        courseNameInput.setAttribute('class', 'courseName');
+        courseNameInput.setAttribute('min', '4')
 
         var newLine = document.createElement('br');
 
@@ -394,12 +413,66 @@ function addNewCourse() {
 function checkFiles() {
 
     var filePath = document.getElementById('file-upload').value;
-
+    var hasErrors = false;
+    
     // Here also we can check PDF extention
     if (filePath) {
-        document.getElementById('submitFiles').disabled = false;
+
+        var uploadedFiles = document.getElementById('file-upload');
+
+        for (var i = 0; i < uploadedFiles.files.length; i++) {
+
+            console.log(Math.round(uploadedFiles.files[i].size/1024));
+            var ext = uploadedFiles.files[i].name.substr(-3);
+
+            if (ext!== "pdf")  {
+
+                errors.push("Sorry, file with this extension can't be uploaded");
+                hasErrors = true;
+                break;
+
+            }
+
+            if (Math.round(uploadedFiles.files[i].size/1024) > 2000)  {
+
+                errors.push("Sorry, you cannot uplod files larger than 2 Mb");
+                hasErrors = true;
+                break;
+
+            }
+        } 
+
+        if (!hasErrors) {
+            init();
+            document.getElementById('submitFiles').disabled = false;
+            var submitBtn = document.getElementById("submitFilesLabel");
+            // submitBtn.setAttribute("style", "color: rgb(1, 71, 30); border-color: rgb(1, 71, 30)");
+            // submitBtn.setAttribute("class", "coolBtn");
+            // submitBtn.setAttribute("style", "content: ''; position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: -1; background-color: var(--accent-color); transition: transform 300ms ease-in-out; transform: scaleX(0); transform-origin: left;");
+            
+            // #submitFilesLabel:hover::before,
+            // #submitFilesLabel:focus::before {
+            //     transform: scaleX(1);
+            // }');'")
+
+
+        } else {
+
+            showErrorMessages(errors);
+        }
+
     } else {
+
         document.getElementById('submitFiles').disabled = true;
+
+    }
+    
+}
+
+function showErrorMessages(err) {
+
+    for (var i = 0; i < err.length; i++) {
+        alert(err[i]);
     }
 
 }

@@ -56,17 +56,26 @@ function checkFiles() {
         } 
 
         if (!hasErrors) {
-            /*
-            TODO: 
-            Here would be where we want to send the AJAX request to our python script
-            sending the files we have to convert. We will call the sartLoadingScreen() method 
-            to go to the next slide, (loading page), here we will need to wait for
-            the server to respond back to us before we can move from the loading page.
-            Currently, move is implemented with a timer for the loading bar. This will need to
-            be changed to vaguely resemble the time it takes for the server to respond
-            from parsing the file(s)
-            */
+            var form_data = new FormData($('#file-form')[0]);
+
+            $.ajax({
+                type: 'POST',
+                url: '/server',
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function(error) {
+                    alert("An error occurred parsing the file, please try again");
+                    console.log(error);
+                }
+            });
+            
             startLoadingScreen();
+            
         } else {
 
             showErrorMessages(errors);

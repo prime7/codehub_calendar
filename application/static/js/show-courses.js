@@ -100,7 +100,8 @@ function showErrorMessages(errors) {
 /* SLIDE 2 STUFF  */
 function startLoadingScreen() {
 
-    $("#carouselExampleIndicators").carousel(1);
+    // $("#carouselExampleIndicators").carousel(1);
+    nextCarousel();
 
     // document.getElementById('backButton').disabled = true;
 
@@ -117,7 +118,10 @@ function startLoadingScreen() {
                     clearInterval(id);
                     i = 0;
                     // document.getElementById('backButton').disabled = false;
-                    setTimeout(next, 1000);
+                    setTimeout(function() {
+                        nextCarousel();
+                        addCourseForms();
+                    }, 1000);
                 } else {
                     width++;
                     elem.style.width = width + "%";
@@ -129,10 +133,11 @@ function startLoadingScreen() {
 
 }
 
-function next() {
-    $("#carouselExampleIndicators").carousel(2);
-    addCourseForms();
-}
+// function next() {
+//     // $("#carouselExampleIndicators").carousel(2);
+//     nextCarousel();
+//     addCourseForms();
+// }
 
 /* SLIDE 3 STUFF  */
 function addCourseForms() {
@@ -468,12 +473,16 @@ function acceptCourses() {
     if (valid) {
         // read all values
         // then go to another slide
-        $("#carouselExampleIndicators").carousel(3);
+        // $("#carouselExampleIndicators").carousel(3);
+        nextCarousel();
     } else {
         alert("Please fill the all the fields with valid letters");
 
     }
+}
 
+function nextCarousel() {
+    $(".carousel").carousel("next");
 }
 
 

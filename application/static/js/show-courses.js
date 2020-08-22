@@ -67,6 +67,8 @@ function checkFiles() {
                 },
                 error: function(error) {
                     alert("An error occurred parsing the file, please try again");
+                    clearInterval(intervalId);
+                    prevCarousel();
                     console.log(error);
                 }
             });
@@ -489,3 +491,6 @@ function nextCarousel() {
 }
 
 
+function prevCarousel() {
+    $(".carousel").carousel("prev");
+}

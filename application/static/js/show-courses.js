@@ -1,8 +1,4 @@
 window.onload = function() {
-    init();
-}
-
-function init() {
     document.querySelector('#file-upload').addEventListener('change', handleFileSelect, false);  
 }
 
@@ -67,6 +63,7 @@ function checkFiles() {
                 processData: false,
                 success: function (data) {
                     console.log(data);
+                    endLoadingScreen();
                 },
                 error: function(error) {
                     alert("An error occurred parsing the file, please try again");
@@ -98,46 +95,53 @@ function showErrorMessages(errors) {
 }
 
 /* SLIDE 2 STUFF  */
-function startLoadingScreen() {
+let intervalId;
+let loadingStatus;
 
-    // $("#carouselExampleIndicators").carousel(1);
+function startLoadingScreen() {
     nextCarousel();
 
     // document.getElementById('backButton').disabled = true;
+    let i = 0;
+    if (i == 0) {
+        i = 1;
+        var loadingBar = document.getElementById("myBar");
+        loadingStatus = 1;
+        intervalId = setInterval(frame, 80);
 
-    setTimeout(function () {
-        let i = 0;
-        if (i == 0) {
-            i = 1;
-            var elem = document.getElementById("myBar");
-            var width = 1;
-            var id = setInterval(frame, 10);
-
-            function frame() {
-                if (width >= 100) {
-                    clearInterval(id);
-                    i = 0;
-                    // document.getElementById('backButton').disabled = false;
-                    setTimeout(function() {
-                        nextCarousel();
-                        addCourseForms();
-                    }, 1000);
-                } else {
-                    width++;
-                    elem.style.width = width + "%";
-                    elem.innerHTML = width + "%";
-                }
+        function frame() {
+            // stall at this random 87 mark
+            if (loadingStatus >= 87) {
+                clearInterval(intervalId);
+            } else {
+                loadingStatus++;
+                loadingBar.style.width = loadingStatus + "%";
+                loadingBar.innerHTML = loadingStatus + "%";
             }
         }
-    }, 1500);
+    }
 
 }
 
-// function next() {
-//     // $("#carouselExampleIndicators").carousel(2);
-//     nextCarousel();
-//     addCourseForms();
-// }
+function endLoadingScreen() {
+    clearInterval(intervalId);
+
+    // finish the loading bar animation and go to next slide
+    let loadingBar = document.getElementById("myBar");
+    intervalId = setInterval(frame, 10);
+
+    function frame() {
+        if (loadingStatus >= 100) {
+            clearInterval(intervalId); 
+            nextCarousel();
+            addCourseForms();           
+        } else {
+            loadingStatus++;
+            loadingBar.style.width = loadingStatus + "%";
+            loadingBar.innerHTML = loadingStatus + "%";
+        }
+    }
+}
 
 /* SLIDE 3 STUFF  */
 function addCourseForms() {
@@ -473,7 +477,6 @@ function acceptCourses() {
     if (valid) {
         // read all values
         // then go to another slide
-        // $("#carouselExampleIndicators").carousel(3);
         nextCarousel();
     } else {
         alert("Please fill the all the fields with valid letters");

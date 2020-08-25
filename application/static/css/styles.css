@@ -212,3 +212,18 @@ a:visited {
     margin-left: 2.5%;
     color: whitesmoke;
 }
+
+#accordion .course-title {
+    display: inline;
+}
+
+#accordion .course-title:hover {
+    cursor: pointer;
+}
+
+#accordion .delete-button {
+    float: right;
+}
+
+
+

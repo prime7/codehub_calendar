@@ -164,20 +164,20 @@ function createCourseForm(course, id) {
     let accordion = $("#accordion");
 
     if (course == null) {
-        id = accordion.children(".card").length;
+        id = accordion.children(".course-form").length;
     }
 
-    let card = $(`<div class="card" id="card${id}"></div>`); 
+    let card = $(`<div class="card course-form" id="courseForm-${id}"></div>`); 
     let cardHeader = $(`<div class="card-header" id="heading${id}">
-                            <h5 class="course-title"
+                            <h3 class="course-title"
                                 data-target="#collapse${id}"
                                 data-toggle="collapse"
                                 aria-expanded="true"
-                                aria-controls="collapse${id}">Course # ${id + 1}</h5>
+                                aria-controls="collapse${id}">Course # ${id + 1}</h3>
                             <button id="deleteCourse${id}"
                                     class="btn btn-danger delete-button"                                   
-                                    onclick="removeCourse(${id})">X</button>
-                        </div>`);
+                                    onclick="removeCourse(event, ${id})">X</button>
+                        </div><hr>`);
 
     //create body of collapse element
     let collapse = $(`<div id="collapse${id}" class="collapse show" aria-labelledby="heading" data-parent="#accordion"></div>`);
@@ -201,6 +201,18 @@ function createCourseForm(course, id) {
                                        class="courseDate form-control"
                                        type="date" 
                                        value="2020-01-02" />
+                                <input name="courseDates"
+                                       class="courseDate form-control"
+                                       type="date" 
+                                       value="2020-01-02" />
+                                <input name="courseDates"
+                                       class="courseDate form-control"
+                                       type="date" 
+                                       value="2020-01-02" />
+                                <input name="courseDates"
+                                       class="courseDate form-control"
+                                       type="date" 
+                                       value="2020-01-02" />
                             </div>`);
 
     //append it all
@@ -211,11 +223,10 @@ function createCourseForm(course, id) {
     accordion.append(card);
 }
 
-function removeCourse(i) {
-    var conf = confirm("Do you want to delete Course #" + (i + 1) + "?");
-    if (conf) {
+function removeCourse(event, i) {
+    if (confirm(`Are you sure you want to delete this course: Course #${i + 1}?`)) {
         var accordion = document.getElementById('accordion');
-        var courseToRemove = document.getElementById('card' + i);
+        var courseToRemove = event.target.closest(".course-form");
         accordion.removeChild(courseToRemove);
     }
 }

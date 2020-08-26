@@ -40,94 +40,95 @@
             </div>
         </div>
     </header>
-    <main id="main">
-        <div id="background"
-            style="background-image: url('https://mycareer.douglascollege.ca/content/documents/landingPageUploads/2019-06-28/r1004207873837977889521114853377473384225105839339r/Douglas_Student_Life_6841_Print_OrbisEditr529151934743251476513800308133308387358321979332r.jpg');">
-            <div id="carouselContainer">
-                <div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div id="carouselContent">
-                                <h3>Select the courses you wish to upload to Gmail</h3>
-                                <div id="course_selector">
-                                    <form id="file-form" autocomplete="on" enctype="multipart/form-data" onsubmit="event.preventDefault(); checkFiles();">
-                                        <label for="file-upload" class="custom-file-upload">
-                                            Upload PDF
-                                        </label>
-                                        <input type="file" name="uploadField" id="file-upload" multiple="multiple">
-                                        <br>
-                                        <div id="selectedFiles"></div>
-                                        <input type="submit" id="submitFile" disabled>
-                                    </form>
-                                </div>
+    <div id="main-container">
+        <div id="carouselContainer">
+            <div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div id="carouselContent">
+                            <h3>Select the courses you wish to upload to Gmail</h3>
+                            <div id="course_selector">
+                                <form id="file-form" autocomplete="on" enctype="multipart/form-data" onsubmit="event.preventDefault(); checkFiles();">
+                                    <label for="file-upload" class="custom-file-upload">
+                                        Upload PDF
+                                    </label>
+                                    <input type="file" name="uploadField" id="file-upload" multiple="multiple">
+                                    <br>
+                                    <div id="selectedFiles"></div>
+                                    <input type="submit" id="submitFile" disabled>
+                                </form>
                             </div>
                         </div>
+                    </div>
 
-                        <!--Second page (Loading bar)-->
-                        <div class="carousel-item">
-                            <div id="carouselContent">
-                                <h1>Loading</h1><br><br>
-                                <div id="barContainer">
-                                    <div id="myBar">1%</div>
-                                </div>
+                    <!--Second page (Loading bar)-->
+                    <div class="carousel-item">
+                        <div id="carouselContent">
+                            <h1>Loading</h1><br><br>
+                            <div id="barContainer">
+                                <div id="myBar">1%</div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Third page Course List Edit-->
-                        <div class="carousel-item" style="overflow-y: scroll;">
-                            <div id="accordion">
-                                <!-- dynamically generated course form list -->
-                            </div>                           
-                            <button class="btn btn-success" id="addNewCourse" onclick="addNewCourse()">+ Add Course</button>
+                    <!-- Third page Course List Edit-->
+                    <div class="carousel-item" style="overflow-y: scroll;">
+                        <div id="accordion">
+                            <!-- dynamically generated course form list -->
+                        </div>  
+                        <hr>   
+                        <div class="form-group">                      
+                            <button class="btn btn-dark" id="addNewCourse" onclick="addNewCourse()">+ Add Course</button>
                             <button class="btn btn-success btn-lg" id="acceptButton" onclick="acceptCourses()">Accept</button>
                         </div>
-                        <!-- fourth page-->
-                        <!-- Problem here When the brower screen is bigger the app icon is moved to
-                            another line -->
-                        <div class="carousel-item">
-                            <h3 class="wow fadeInLeftBig">Choose one app which you want to use</h3>
-                            <div class="calendar-choices-container">
-                                <!-- When user press button it shows the message about the app information -->
+                    </div>
+                    <!-- fourth page-->
+                    <!-- Problem here When the brower screen is bigger the app icon is moved to
+                        another line -->
+                    <div class="carousel-item">
+                        <h3 class="wow fadeInLeftBig">Choose one app which you want to use</h3>
+                        <div class="calendar-choices-container">
+                            <!-- When user press button it shows the message about the app information -->
 
-                                <button onclick="GoogleAPI()">
-                                    <img src="static/img/google Cal_logo.png" alt="Google Calendar">
-                                    <h3>Google Calendar</h3>
-                                </button>
-                                <button onclick="outLookAPI()">
-                                    <img src="static/img/outlook Cal_logo.png" alt="Outlook Calendar">
-                                    <h3>Outlook Calendar</h3>
-                                </button>
+                            <button onclick="GoogleAPI()">
+                                <img src="static/img/google Cal_logo.png" alt="Google Calendar">
+                                <h3>Google Calendar</h3>
+                            </button>
+                            <button onclick="outLookAPI()">
+                                <img src="static/img/outlook Cal_logo.png" alt="Outlook Calendar">
+                                <h3>Outlook Calendar</h3>
+                            </button>
 
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                                data-slide="prev" id="backButton">Back</a>
-
-                            <script>
-                                function outLookAPI() {
-                                    alert("You use the MS Outlook");
-                                }
-                                function GoogleAPI() {
-                                    alert("You use the Google Calendar");
-                                }
-                            </script>
-                            <div id="carouselContent"></div>
                         </div>
-                        <!-- Last page-->
-                        <div class="carousel-item">
-                            <div class="carouselContent">
-                                <h3>Thanks for using our app!</h3>
-                                <!-- Cat picture -->
-                                <img src="static/img/developer cat 2.jpg" alt="Developer cat" id="catImg">
-                            </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            data-slide="prev" id="backButton">Back</a>
+
+                        <script>
+                            function outLookAPI() {
+                                alert("You use the MS Outlook");
+                            }
+                            function GoogleAPI() {
+                                alert("You use the Google Calendar");
+                            }
+                        </script>
+                        <div id="carouselContent"></div>
+                    </div>
+                    <!-- Last page-->
+                    <div class="carousel-item">
+                        <div class="carouselContent">
+                            <h3>Thanks for using our app!</h3>
+                            <!-- Cat picture -->
+                            <img src="static/img/developer cat 2.jpg" alt="Developer cat" id="catImg">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <footer>
-        <p>Produced by students at Douglas College Developer Club.</p>
+        <p>Produced by students at Douglas College Developer Club</p>
+        <p>Copyright @ 2020</p>
     </footer>
 </body>
 

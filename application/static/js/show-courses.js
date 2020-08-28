@@ -164,7 +164,7 @@ function createCourseForm(course, id) {
     let accordion = $("#accordion");
 
     if (course == null) {
-        id = accordion.children(".course-form").length;
+        id = parseInt(accordion.children(".course-form").last().attr("id").split("-")[1]) + 1;
     }
 
     let card = $(`<div class="card course-form" id="courseForm-${id}"></div>`); 
@@ -214,6 +214,8 @@ function createCourseForm(course, id) {
                                        type="date" 
                                        value="2020-01-02" />
                             </div>`);
+
+    
 
     //append it all
     form.append(datesFormGroup);

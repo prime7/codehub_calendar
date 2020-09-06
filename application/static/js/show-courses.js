@@ -2,6 +2,8 @@ window.onload = function() {
     document.querySelector('#file-upload').addEventListener('change', handleFileSelect, false);  
 }
 
+var courseList = [];
+
 /* SLIDE 1 STUFF  */
 function handleFileSelect(e) {
     var selDiv = document.querySelector("#selectedFiles");
@@ -64,7 +66,11 @@ function checkFiles() {
                 cache: false,
                 processData: false,
                 success: function (data) {
-                    endLoadingScreen(JSON.parse(data));
+                    // TODO: remove the array identifiers around JSON.parse, for now we're not getting an array back, just 1 object
+                    // Need to be able to send multiple files to back end, parse parse, and receive array or objects for each file sent
+                    courseList = [JSON.parse(data)];
+                    endLoadingScreen();
+                    console.log(courseList);
                 },
                 error: function(error) {
                     alert("An error occurred parsing the file, please try again");
@@ -125,7 +131,7 @@ function startLoadingScreen() {
 
 }
 
-function endLoadingScreen(data) {
+function endLoadingScreen() {
     clearInterval(intervalId);
 
     // finish the loading bar animation and go to next slide
@@ -136,7 +142,7 @@ function endLoadingScreen(data) {
         if (loadingStatus >= 100) {
             clearInterval(intervalId); 
             nextCarousel();
-            addCourseForms(data);           
+            addCourseForms();           
         } else {
             loadingStatus++;
             loadingBar.style.width = loadingStatus + "%";
@@ -146,11 +152,7 @@ function endLoadingScreen(data) {
 }
 
 /* SLIDE 3 STUFF  */
-function addCourseForms(courses) {
-
-    //for now: courses is just 1 object, Eventually would be good to get back an array
-    let courseList = [courses];
-
+function addCourseForms() {
     let accordion = $('#accordion');
     accordion.empty()
 
@@ -162,29 +164,31 @@ function addCourseForms(courses) {
 
 function createCourseForm(course, id) {
     let accordion = $("#accordion");
-
-    if (course == null) {
-        id = parseInt(accordion.children(".course-form").last().attr("id").split("-")[1]) + 1;
-    }
+    
+    // TODO: remove array identifiers, this should be an array already
+    let quizDates = course ? [course["EventsAndDates"]["Quiz"]] : [];
+    let midtermDates = course ? [course["EventsAndDates"]["Midterm"]] : [];
+    id = course ? id : id = parseInt(accordion.children(".course-form").last().attr("id").split("-")[1]) + 1;
 
     let card = $(`<div class="card course-form" id="courseForm-${id}"></div>`); 
     let cardHeader = $(`<div class="card-header" id="heading${id}">
                             <h3 class="course-title"
-                                data-target="#collapse${id}"
+                                data-target="#collapse-${id}"
                                 data-toggle="collapse"
                                 aria-expanded="true"
-                                aria-controls="collapse${id}">Course # ${id + 1}</h3>
-                            <button id="deleteCourse${id}"
+                                aria-controls="collapse-${id}">Course # ${id + 1}</h3>
+                            <button id="deleteCourse-${id}"
                                     class="btn btn-danger delete-button"                                   
                                     onclick="removeCourse(event, ${id})">X</button>
-                        </div><hr>`);
+                        </div><hr />`);
 
     //create body of collapse element
-    let collapse = $(`<div id="collapse${id}" class="collapse show" aria-labelledby="heading" data-parent="#accordion"></div>`);
+    let collapse = $(`<div id="collapse-${id}" class="collapse show" aria-labelledby="heading" data-parent="#accordion"></div>`);
     let cardBody = $(`<div class="card-body"></div>`);
 
     // put form inside the collapse body
-    let form = $(`<form id="editForm${id}" class="editFormClass">
+    // TODO: server side, need to be able to grab course code from the file. currently returning ""
+    let mainForm = $(`<form id="editForm-${id}" class="editFormClass">
                     <div class="form-group">
                         <label for="courseName">Course Code:</label>
                         <input name="courseName" 
@@ -195,34 +199,52 @@ function createCourseForm(course, id) {
                     </div>
                  </form>`);                        
 
-    let datesFormGroup = $(`<div class="form-group">
-                                <label for="courseDates">Important Dates:</label>
-                                <input name="courseDates"
-                                       class="courseDate form-control"
-                                       type="date" 
-                                       value="2020-01-02" />
-                                <input name="courseDates"
-                                       class="courseDate form-control"
-                                       type="date" 
-                                       value="2020-01-02" />
-                                <input name="courseDates"
-                                       class="courseDate form-control"
-                                       type="date" 
-                                       value="2020-01-02" />
-                                <input name="courseDates"
-                                       class="courseDate form-control"
-                                       type="date" 
-                                       value="2020-01-02" />
+    let datesFormGroup = $(`<div class="form-group quiz-date-group">
+                                <label for="courseDates">Quiz Dates:</label>                                
+                                ${generateListDatesHTML(quizDates)}
+                            </div>
+                            <div class="form-group midterm-date-group">
+                                <label for="courseDates">Midterm Dates:</label>                                
+                                ${generateListDatesHTML(midtermDates)}
                             </div>`);
 
     
 
-    //append it all
-    form.append(datesFormGroup);
-    cardBody.append(form);
-    collapse.append(cardBody);
-    card.append(cardHeader, collapse);
-    accordion.append(card);
+    //append dates to this course's form
+    mainForm.append(datesFormGroup);
+    
+    //append it all to the accordion thing
+    accordion.append(card.append(cardHeader, collapse.append(cardBody.append(mainForm))));
+    accordion.append("<hr>")
+    // collapse.append(cardBody);
+    // card.append(cardHeader, collapse);
+    // accordion.append(card);
+}
+
+function generateListDatesHTML(dates) {
+    if(dates.length < 1) {
+        return "<span><i>No Dates to Display</i></span>"
+    }
+
+    let html = "";
+
+    for (let i = 0; i < dates.length; i++) {
+        html += `<input name="courseDates"
+                        class="courseDate form-control"
+                        type="date" 
+                        value="${getDateValue(dates[i])}" />`
+    }
+
+    return html;
+}
+
+function getDateValue(d) {
+    let year = new Date(Date.now()).getFullYear();
+    let dDate = new Date(d);
+    let month = dDate.getMonth();
+    let day = dDate.getDate();
+    // format for date input is yyyy-mm-dd
+    return `${year}-${month > 9 ? month : "0" + month}-${day > 9 ? day : "0" + day}`;
 }
 
 function removeCourse(event, i) {

@@ -165,9 +165,9 @@ function addCourseForms() {
 function createCourseForm(course, id) {
     let accordion = $("#accordion");
     
-    // TODO: remove array identifiers, this should be an array already
-    let quizDates = course ? [course["EventsAndDates"]["Quiz"]] : [];
-    let midtermDates = course ? [course["EventsAndDates"]["Midterm"]] : [];
+    let quizDates = course ? course["EventsAndDates"].filter(event => Object.keys(event) == "Quiz").map(date => date["Quiz"]) : [];
+    let midtermDates = course ? course["EventsAndDates"].filter(event => Object.keys(event) == "Midterm").map(date => date["Midterm"]) : [];
+    
     id = course ? id : id = parseInt(accordion.children(".course-form").last().attr("id").split("-")[1]) + 1;
 
     let card = $(`<div class="card course-form" id="courseForm-${id}"></div>`); 
@@ -216,9 +216,6 @@ function createCourseForm(course, id) {
     //append it all to the accordion thing
     accordion.append(card.append(cardHeader, collapse.append(cardBody.append(mainForm))));
     accordion.append("<hr>")
-    // collapse.append(cardBody);
-    // card.append(cardHeader, collapse);
-    // accordion.append(card);
 }
 
 function generateListDatesHTML(dates) {
@@ -241,7 +238,7 @@ function generateListDatesHTML(dates) {
 function getDateValue(d) {
     let year = new Date(Date.now()).getFullYear();
     let dDate = new Date(d);
-    let month = dDate.getMonth();
+    let month = dDate.getMonth() + 1; // since jan starts from 0
     let day = dDate.getDate();
     // format for date input is yyyy-mm-dd
     return `${year}-${month > 9 ? month : "0" + month}-${day > 9 ? day : "0" + day}`;

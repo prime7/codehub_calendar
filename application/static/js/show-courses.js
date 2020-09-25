@@ -188,7 +188,7 @@ function createCourseForm(course, id) {
 
     // put form inside the collapse body
     // TODO: server side, need to be able to grab course code from the file. currently returning ""
-    let mainForm = $(`<form id="editForm-${id}" class="editFormClass">
+    let mainForm = $(`<form id="editForm-${id}" class="editFormClass" onSubmit="event.preventDefault();">
                     <div class="form-group">
                         <label for="courseName">Course Code:</label>
                         <input name="courseName" 
@@ -201,12 +201,15 @@ function createCourseForm(course, id) {
 
     let datesFormGroup = $(`<div class="form-group quiz-date-group">
                                 <label for="courseDates">Quiz Dates:</label>                                
-                                ${generateListDatesHTML(quizDates)}
+                                ${generateListDatesHTML(quizDates)}                                
                             </div>
+                            <button class="btn btn-dark add-date-btn" for="quiz-date-group" onclick="addDate(event)">+ Add Quiz Date</button>
                             <div class="form-group midterm-date-group">
                                 <label for="courseDates">Midterm Dates:</label>                                
-                                ${generateListDatesHTML(midtermDates)}
-                            </div>`);
+                                ${generateListDatesHTML(midtermDates)}                                
+                            </div>
+                            <button class="btn btn-dark add-date-btn" for="midterm-date-group" onclick="addDate(event)">+ Add Midterm Date</button>
+                            `);
 
     
 
@@ -226,13 +229,32 @@ function generateListDatesHTML(dates) {
     let html = "";
 
     for (let i = 0; i < dates.length; i++) {
-        html += `<input name="courseDates"
-                        class="courseDate form-control"
-                        type="date" 
-                        value="${getDateValue(dates[i])}" />`
+        html += getDateHTML(getDateValue(dates[i]));
     }
 
     return html;
+}
+
+function getDateHTML(d) {
+    return `<span class="date-group">
+                <input name="courseDates"
+                class="courseDate form-control"
+                type="date" 
+                value="${d}"/>
+                <button class="btn btn-danger remove-date-btn" title="Remove Date" onclick="removeDate(event)">X</button>
+            </span>`;
+}
+
+function addDate(e) {
+    e.preventDefault();
+    $dateGroup = $(e.target).attr("for");
+    $("." + $dateGroup).append(getDateHTML(getDateValue(Date.now())));
+}
+
+function removeDate(e) {
+    e.preventDefault();
+    if(confirm("Are you sure you want to delete this?"))
+        $(e.target).closest(".date-group").remove();
 }
 
 function getDateValue(d) {

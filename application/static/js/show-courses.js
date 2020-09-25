@@ -222,10 +222,6 @@ function createCourseForm(course, id) {
 }
 
 function generateListDatesHTML(dates) {
-    if(dates.length < 1) {
-        return "<span><i>No Dates to Display</i></span>"
-    }
-
     let html = "";
 
     for (let i = 0; i < dates.length; i++) {
@@ -236,13 +232,13 @@ function generateListDatesHTML(dates) {
 }
 
 function getDateHTML(d) {
-    return `<span class="date-group">
+    return `<div class="date-group">
                 <input name="courseDates"
                 class="courseDate form-control"
                 type="date" 
                 value="${d}"/>
                 <button class="btn btn-danger remove-date-btn" title="Remove Date" onclick="removeDate(event)">X</button>
-            </span>`;
+            </div>`;
 }
 
 function addDate(e) {

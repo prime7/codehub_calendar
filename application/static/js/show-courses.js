@@ -4,6 +4,26 @@ window.onload = function() {
 
 var courseList = [];
 
+// Add animations dynamically to DOM elements
+// Pass the JQuery object to animate with the animation name
+// Will add animated class and animation to play
+// And remove animation classes at the end of the animation
+const animateCSS = ($element, animation, prefix = 'animate__') =>
+  // We create a Promise and return it
+  new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`;
+
+    $element.addClass(`${prefix}animated ${animationName} animate__faster`);
+
+    // When the animation ends, we clean the classes and resolve the Promise
+    function handleAnimationEnd() {
+      $element.removeClass(`${prefix}animated ${animationName} animate__faster`);
+      resolve('Animation ended');
+    }
+
+    $element[0].addEventListener('animationend', handleAnimationEnd, {once: true});
+  });
+
 /* SLIDE 1 STUFF  */
 function handleFileSelect(e) {
     var selDiv = document.querySelector("#selectedFiles");
@@ -231,8 +251,8 @@ function generateListDatesHTML(dates) {
     return html;
 }
 
-function getDateHTML(d) {
-    return `<div class="date-group">
+function getDateHTML(d, customClass) {
+    return `<div class="date-group ${customClass || ""}">
                 <input name="courseDates"
                 class="courseDate form-control"
                 type="date" 
@@ -243,14 +263,19 @@ function getDateHTML(d) {
 
 function addDate(e) {
     e.preventDefault();
-    $dateGroup = $(e.target).attr("for");
-    $("." + $dateGroup).append(getDateHTML(getDateValue(Date.now())));
+    let $dateGroup = $(`.${$(e.target).attr("for")}`);
+    let $newDate = $(getDateHTML(getDateValue(Date.now()), ""));
+    $dateGroup.append($newDate);
+    animateCSS($newDate, 'zoomIn');
 }
 
 function removeDate(e) {
     e.preventDefault();
+    let elemToRemove = $(e.target).closest(".date-group");
     if(confirm("Are you sure you want to delete this?"))
-        $(e.target).closest(".date-group").remove();
+        animateCSS(elemToRemove, 'zoomOut').then((message) => {
+            elemToRemove.remove();
+        });    
 }
 
 function getDateValue(d) {

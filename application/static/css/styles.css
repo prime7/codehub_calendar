@@ -274,7 +274,11 @@ a:visited {
 }
 
 .date-group {
-    display: inline;
+    display: inline-block;
+}
+
+.hidden {
+    display: none;
 }
 
 

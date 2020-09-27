@@ -204,8 +204,8 @@ a:visited {
 }
 
 .calendar-choices-container img{
-    width:50%; 
-    
+    width: 50%; 
+    display: inline;
 }
 
 .carousel-control-next, .carousel-control-prev {

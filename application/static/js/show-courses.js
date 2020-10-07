@@ -1,5 +1,6 @@
 /*  VARIABLES */
 var courseList = [];
+var uploadedFiles = [];
 
 // Add animations dynamically to DOM elements
 // Pass the JQuery object to animate with the animation name
@@ -21,7 +22,7 @@ const animateCSS = ($element, animation, prefix = 'animate__') =>
     $element[0].addEventListener('animationend', handleAnimationEnd, {once: true});
   });
 
-/* SLIDE 1 STUFF  */
+/* HOME PAGE  */
 function handleFileSelect(e) {
     let selDiv = $("#selectedFiles");
 
@@ -30,13 +31,14 @@ function handleFileSelect(e) {
     }
 
     selDiv.empty();
+    uploadedFiles = [];
 
     let files = e.target.files;
     for (var i = 0; i < files.length; i++) {
         let f = files[i];
 
         selDiv.append(f.name + "<br/>");
-
+        uploadedFiles.push(f.name);
     }
 
     document.querySelector("#submitFile").disabled = false;
@@ -121,7 +123,7 @@ function showErrorMessages(errors) {
     alert(errorMsg);
 }
 
-/* SLIDE 2 STUFF  */
+/* LOADING PAGE  */
 let intervalId;
 let loadingStatus;
 
@@ -170,18 +172,18 @@ function endLoadingScreen() {
     }
 }
 
-/* SLIDE 3 STUFF  */
+/* COURSE DATE EDITTING PAGE  */
 function addCourseForms() {
     let accordion = $('#accordion');
     accordion.empty()
 
     // Create collapse elements according to the number of courses user is taking
     for (let i = 0; i < courseList.length; i++) {
-        createCourseForm(courseList[i], i);
+        createCourseForm(courseList[i], i, uploadedFiles[i]);
     }
 }
 
-function createCourseForm(course, id) {
+function createCourseForm(course, id, filename) {
     let accordion = $("#accordion");
     
     let quizDates = course ? course["EventsAndDates"].filter(event => Object.keys(event) == "Quiz").map(date => date["Quiz"]) : [];
@@ -195,7 +197,7 @@ function createCourseForm(course, id) {
                                 data-target="#collapse-${id}"
                                 data-toggle="collapse"
                                 aria-expanded="true"
-                                aria-controls="collapse-${id}">Course # ${id + 1}</h3>
+                                aria-controls="collapse-${id}">${filename}</h3>
                             <button id="deleteCourse-${id}"
                                     class="btn btn-danger delete-button"                                   
                                     onclick="removeCourse(event, ${id})">X</button>
@@ -295,7 +297,7 @@ function removeCourse(event, i) {
 }
 
 function addNewCourse() {
-    createCourseForm(null, null);
+    createCourseForm(null, null, "Custom");
 }
 
 function acceptCourses() {

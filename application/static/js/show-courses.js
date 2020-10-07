@@ -1,7 +1,4 @@
-window.onload = function() {
-    document.querySelector('#file-upload').addEventListener('change', handleFileSelect, false);  
-}
-
+/*  VARIABLES */
 var courseList = [];
 
 // Add animations dynamically to DOM elements
@@ -26,15 +23,19 @@ const animateCSS = ($element, animation, prefix = 'animate__') =>
 
 /* SLIDE 1 STUFF  */
 function handleFileSelect(e) {
-    var selDiv = document.querySelector("#selectedFiles");
+    let selDiv = $("#selectedFiles");
 
-    if (!e.target.files) return;
+    if (!e.target.files) {
+        return;
+    }
 
-    var files = e.target.files;
+    selDiv.empty();
+
+    let files = e.target.files;
     for (var i = 0; i < files.length; i++) {
-        var f = files[i];
+        let f = files[i];
 
-        selDiv.innerHTML += f.name + "<br/>";
+        selDiv.append(f.name + "<br/>");
 
     }
 
@@ -107,9 +108,7 @@ function checkFiles() {
         }
 
     } else {
-
         document.getElementById('submitFile').disabled = true;
-
     }
     
 }

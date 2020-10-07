@@ -57,8 +57,6 @@ nav {
     background-size: 100% 100%;
     width: 75%;
     margin: auto;
-    height: 10em;
-    margin: auto;
     text-align: center;
 }
 
@@ -76,7 +74,7 @@ nav {
 }
 
 #main-container {
-    background-image: url("https://mycareer.douglascollege.ca/content/documents/landingPageUploads/2019-06-28/r1004207873837977889521114853377473384225105839339r/Douglas_Student_Life_6841_Print_OrbisEditr529151934743251476513800308133308387358321979332r.jpg");
+    background-image: url("../img/douglascollege.jpg");
     border-image-repeat: stretch;
     background-position: 50% 50%;
     background-position-x: 50%;

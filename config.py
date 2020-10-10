@@ -1,3 +1,3 @@
 import os
 class Config(object):
-    UPLOAD_FOLDER = '.\\application'
+    UPLOAD_FOLDER = './application'

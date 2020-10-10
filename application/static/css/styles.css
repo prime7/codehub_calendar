@@ -146,6 +146,10 @@ a:visited {
   background-color: #ddd;
 }
 
+.hide {
+    display: none;
+}
+
 #myBar {
   width: 1%;
   height: 50px;
@@ -164,6 +168,10 @@ a:visited {
 #accordion {
     color: white;
     font-size: 0.5em;
+}
+
+#accordion .accordion-data-expand-control {
+    display: inline-block;
 }
 
 #carouselContainer {

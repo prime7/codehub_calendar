@@ -163,7 +163,7 @@ function endLoadingScreen() {
         if (loadingStatus >= 100) {
             clearInterval(intervalId); 
             nextCarousel();
-            addCourseForms();           
+            addCourseForms(courseList);           
         } else {
             loadingStatus++;
             loadingBar.style.width = loadingStatus + "%";
@@ -173,13 +173,13 @@ function endLoadingScreen() {
 }
 
 /* COURSE DATE EDITTING PAGE  */
-function addCourseForms() {
+function addCourseForms(courses) {
     let accordion = $('#accordion');
     accordion.empty()
 
     // Create collapse elements according to the number of courses user is taking
-    for (let i = 0; i < courseList.length; i++) {
-        createCourseForm(courseList[i], i, uploadedFiles[i]);
+    for (let i = 0; i < courses.length; i++) {
+        createCourseForm(courses[i], i, uploadedFiles[i]);
     }
 }
 
@@ -193,18 +193,30 @@ function createCourseForm(course, id, filename) {
 
     let card = $(`<div class="card course-form" id="courseForm-${id}"></div>`); 
     let cardHeader = $(`<div class="card-header" id="heading${id}">
-                            <h3 class="course-title"
+                            <h3 class="course-title">
+                                ${filename}                                                           
+                                <span class="accordion-data-expand-control" 
                                 data-target="#collapse-${id}"
                                 data-toggle="collapse"
                                 aria-expanded="true"
-                                aria-controls="collapse-${id}">${filename}</h3>
+                                aria-controls="collapse-${id}"
+                                onclick="toggleDataExpandAppearance(event)">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-minus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
+                                    <!-- minus symbol -->
+                                    <path class="plus-minus" fill-rule="evenodd" d="M5.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+                                    <!-- plus symbol -->
+                                    <path class="plus-minus hide" fill-rule="evenodd" d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5z"/>
+                                    </svg>
+                                </span>
+                            </h3>
                             <button id="deleteCourse-${id}"
                                     class="btn btn-danger delete-button"                                   
                                     onclick="removeCourse(event, ${id})">X</button>
                         </div><hr />`);
 
     //create body of collapse element
-    let collapse = $(`<div id="collapse-${id}" class="collapse show" aria-labelledby="heading" data-parent="#accordion"></div>`);
+    let collapse = $(`<div id="collapse-${id}" class="collapse show multi-collapse"></div>`);
     let cardBody = $(`<div class="card-body"></div>`);
 
     // put form inside the collapse body
@@ -240,6 +252,11 @@ function createCourseForm(course, id, filename) {
     //append it all to the accordion thing
     accordion.append(card.append(cardHeader, collapse.append(cardBody.append(mainForm))));
     accordion.append("<hr>")
+}
+
+function toggleDataExpandAppearance(event) {
+    $(event.target).find(".plus-minus").toggleClass("hide");
+    console.log($(event.target).find(".plus-minus"));
 }
 
 function generateListDatesHTML(dates) {
@@ -297,7 +314,8 @@ function removeCourse(event, i) {
 }
 
 function addNewCourse() {
-    createCourseForm(null, null, "Custom");
+    // [course object, id, course name]
+    createCourseForm(null, $(".course-form").length, "Custom Course");
 }
 
 function acceptCourses() {

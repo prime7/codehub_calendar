@@ -28,6 +28,14 @@ h3 {
     color: white;
 }
 
+svg {
+    pointer-events: none;
+}
+
+svg path {
+    pointer-events: none;
+}
+
 
 #header {
     display: flex;

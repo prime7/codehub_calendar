@@ -163,7 +163,7 @@ function endLoadingScreen() {
         if (loadingStatus >= 100) {
             clearInterval(intervalId); 
             nextCarousel();
-            addCourseForms(courseList);           
+            initializeCourseDateEditorForm(courseList);           
         } else {
             loadingStatus++;
             loadingBar.style.width = loadingStatus + "%";
@@ -173,7 +173,7 @@ function endLoadingScreen() {
 }
 
 /* COURSE DATE EDITTING PAGE  */
-function addCourseForms(courses) {
+function initializeCourseDateEditorForm(courses) {
     let accordion = $('#accordion');
     accordion.empty()
 
@@ -181,6 +181,9 @@ function addCourseForms(courses) {
     for (let i = 0; i < courses.length; i++) {
         createCourseForm(courses[i], i, uploadedFiles[i]);
     }
+
+    accordion.on("show.bs.collapse", toggleDataExpandAppearance);
+    accordion.on("hide.bs.collapse", toggleDataExpandAppearance);
 }
 
 function createCourseForm(course, id, filename) {
@@ -199,8 +202,7 @@ function createCourseForm(course, id, filename) {
                                 data-target="#collapse-${id}"
                                 data-toggle="collapse"
                                 aria-expanded="true"
-                                aria-controls="collapse-${id}"
-                                onclick="toggleDataExpandAppearance(event)">
+                                aria-controls="collapse-${id}">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-minus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
                                     <!-- minus symbol -->
@@ -255,8 +257,8 @@ function createCourseForm(course, id, filename) {
 }
 
 function toggleDataExpandAppearance(event) {
-    $(event.target).find(".plus-minus").toggleClass("hide");
-    console.log($(event.target).find(".plus-minus"));
+    let collapseElement = event.target.id;
+    $(`.accordion-data-expand-control[aria-controls="${collapseElement}"]`).find(".plus-minus").toggleClass("hide");
 }
 
 function generateListDatesHTML(dates) {

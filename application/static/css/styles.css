@@ -28,6 +28,14 @@ h3 {
     color: white;
 }
 
+.truncated-file-name {
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+}
+
 svg {
     pointer-events: none;
 }
@@ -36,6 +44,9 @@ svg path {
     pointer-events: none;
 }
 
+h3 span {
+    vertical-align: bottom;
+}
 
 #header {
     display: flex;

@@ -197,7 +197,7 @@ function createCourseForm(course, id, filename) {
     let card = $(`<div class="card course-form" id="courseForm-${id}"></div>`); 
     let cardHeader = $(`<div class="card-header" id="heading${id}">
                             <h3 class="course-title">
-                                ${filename}                                                           
+                                <span class="truncated-file-name">${filename}</span>                                                           
                                 <span class="accordion-data-expand-control" 
                                 data-target="#collapse-${id}"
                                 data-toggle="collapse"
